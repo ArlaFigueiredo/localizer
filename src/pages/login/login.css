@@ -2,7 +2,7 @@
     width: 100%;
     padding: 15%;
     margin: auto;
-    background-color: #614EA6;
+    background-color: #f26522;
     height: 100vh;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .btn-login:hover{
-    background-color: #F21667;
+    background-color: #16f26a;
     color: #fff;
 }
 
@@ -23,5 +23,5 @@
 }
 
 .opcoes-login a:hover{    
-    color: #F21667;
+    color: #f2e316;
 }

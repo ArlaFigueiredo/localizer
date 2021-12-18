@@ -61,7 +61,7 @@ function Login() {
 
                 <div className="opcoes-login mt-5 text-center">
                     <a className="text-white mx-2">Ainda não é nosso cliente?</a>
-                    <Link to='/cadastro-cliente' className="mx-2">Quero Cadastrar</Link>
+                    <Link to='/cadastro-cliente' className="mx-2">Cadastre-se</Link>
                 </div>
             </form>
         </div>

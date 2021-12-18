@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './home.css';
 import car from '../../assets/car.webp'
+import cars from '../../assets/cars.JPG'
+import banner from '../../assets/banner.JPG'
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import { Link } from 'react-router-dom';
@@ -24,12 +26,10 @@ function Home({ match }) {
                     </>
                     :
                     <>
-                        <div className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img src={car} className="d-block w-100" />
-                                </div>
-                            </div>
+                        <div className="bd-example">
+                            <h3 className='text-center fst-italic mt-3'>Conheça a nossa Frota</h3>
+                            <p className="text-dark text-opacity-75 text-center fst-italic">As melhores condições para você reservar e aproveitar</p>
+                            <img src={banner} className="d-block w-100" />
                         </div>
                         <footer className="bd-footer py-5 mt-5">
                             <div className="container py-5">

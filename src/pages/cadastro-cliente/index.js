@@ -13,6 +13,7 @@ function CadastroCliente() {
     const [rg, setRg] = useState();
     const [cpf, setCpf] = useState();
     const [cnh, setCnh] = useState();
+    const [dataNascimento, setDataNascimento] = useState();
     const [logradouro, setLogradouro] = useState();
     const [complemento, setComplemento] = useState();
     const [numero, setNumero] = useState();
@@ -48,7 +49,8 @@ function CadastroCliente() {
                 bairro: bairro,
                 cidade: cidade,
                 estado: estado,
-                usuario: usuarioRef
+                usuario: usuarioRef,
+                dataNascimento: dataNascimento
             })
             setMsgTipo('sucesso');
         } catch (e) {
@@ -61,8 +63,8 @@ function CadastroCliente() {
     return (
         <>
             <Navbar />
-            <div class="card text-white bg-light ml-5 mr-5 mt-5">
-                <div class="card-body">
+            <div className="card text-white bg-light ml-5 mr-5 mt-5">
+                <div className="card-body">
                     <div className="col-12 mt-5 ml-2 mr-2">
                         <div className="row">
                             <h1 className="mx-auto">Cadastro</h1>
@@ -71,12 +73,17 @@ function CadastroCliente() {
                         <form>
                             <span className="badge">Dados Pessoais</span>
                             <div className="form-group row">
-                                <div className="col-8">
+                                <div className="col-6">
                                     <label className="text-dark">Nome:</label>
                                     <input onChange={(e) => setNome(e.target.value)} type="text" className="form-control" />
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-3">
+                                    <label className="text-dark">Data de nascimento:</label>
+                                    <input onChange={(e) => setDataNascimento(e.target.value) } type="date"  className="form-control"/>
+                                </div>
+
+                                <div className="col-3">
                                     <label className="text-dark">Sexo:</label>
                                     <select onChange={(e) => setSexo(e.target.value)} className="form-control">
                                         <option>-- Selecione o sexo --</option>
@@ -154,8 +161,8 @@ function CadastroCliente() {
                             <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                         </form>
 
-                        <div className="msg-login text-black text-center my-5">
-                            {msgTipo === 'sucesso' && <span>Cliente cadastrado com sucesso!</span>}
+                        <div className="msg-login text-dark text-center my-5">
+                            {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Cliente cadastrado com sucesso!</h3></span>}
                             {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
                         </div>
                     </div>

@@ -1,7 +1,10 @@
 .bd-footer{
-    background-color: #614EA6;
+    background-color: #f26522;
 }
 .bd-footer a{
     color: #fff;
     transition: .3s ease-in;
+}
+.bd-example h3{
+    color: #f26522;
 }
