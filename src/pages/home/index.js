@@ -19,9 +19,8 @@ function Home({ match }) {
                 useSelector(state => state.usuarioLogado) > 0 ?
                     <>
                         <Sidebar />
-                        <div className="row p-3">
-                            <div className="row p-3">
-                            </div>
+                        <div className="container">
+                            
                         </div>
                     </>
                     :

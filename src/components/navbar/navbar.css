@@ -1,5 +1,6 @@
 .navbar{
     background-color: #f26522;
+    z-index: 2;
 }
 
 .nav-item a{

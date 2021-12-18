@@ -9,35 +9,35 @@ function Sidebar() {
 
     return (
         
-        <nav class="navbar navbar-expand-md navbar-dark fixed-left">
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link"></a>
+        <nav className="navbar navbar-expand-md navbar-dark fixed-left">
+            <div className="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <a className="nav-link"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"></a>
+                    <li className="nav-item">
+                        <a className="nav-link"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"></a>
+                    <li className="nav-item">
+                        <a className="nav-link"></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"></a>
+                    <li className="nav-item">
+                        <a className="nav-link"></a>
                     </li>
                     {           
                         useSelector(state => state.usuarioPrivilege) === "CLIENTE" ?                  
-                    <>                        
-                    <li class="nav-item">
-                        <a class="nav-link">Reservar</a>
+                    <> 
+                    <li className="nav-item">
+                        <Link to='/cadastro-reserva' className="nav-link">Reservar</Link>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Minhas Reservas</a>
+                    <li className="nav-item">
+                        <a className="nav-link">Minhas Reservas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Meus Débitos</a>
+                    <li className="nav-item">
+                        <a className="nav-link">Meus Débitos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Comprovantes</a>
+                    <li className="nav-item">
+                        <a className="nav-link">Comprovantes</a>
                     </li>
                     </>
                     :
