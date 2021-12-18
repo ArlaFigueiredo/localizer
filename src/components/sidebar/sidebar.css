@@ -1,0 +1,21 @@
+.navbar.fixed-left {
+    right: auto;
+    bottom: 0;
+    width: 232px;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #848486;
+}
+.navbar.fixed-left .navbar-collapse {
+    flex-grow: 0;
+    flex-direction: column;
+    width: 100%;
+}
+.navbar.fixed-left .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+}

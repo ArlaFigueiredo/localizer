@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './login.css';
 import firebase from '../../config/firebase';
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
-import {Link, Redirect} from 'react-router-dom';
+import { getFirestore, query, where, updateDoc, deleteDoc, doc, addDoc, getDocs, collection, get } from 'firebase/firestore';
+import {Link, Navigate} from 'react-router-dom';
+import Navbar from '../../components/navbar';
+import { useSelector, useDispatch} from 'react-redux';
 
 
 function Login() {
@@ -11,18 +13,33 @@ function Login() {
     const [senha, setSenha] = useState();
     const [msgTipo, setMsgTipo] = useState();
 
+    const dispatch = useDispatch();
+
     async function logar(){
-        let auth = await getAuth();
-        signInWithEmailAndPassword(auth, email, senha).then(resultado => {
-            setMsgTipo('sucesso');           
-        }).catch(erro => {
+        let db = getFirestore();
+        const userRef = collection(db, "usuario");
+        const q = query(userRef, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+        let password = undefined;
+        let privilege = undefined;
+        querySnapshot.forEach((doc) => {
+            password = doc.data().senha;
+            privilege = doc.data().privilege;
+        });
+        if (password === senha) {
+            dispatch({type: 'LOG_IN', usuarioEmail: email, usuarioPrivilege: privilege})
+            setMsgTipo('sucesso');
+        } else {
             setMsgTipo('erro');
-        });      
-            
+        }
     }  
 
     return (
+        <>
+        <Navbar />
         <div className="login-content d-flex align-items-center">
+
+            {useSelector(state => state.usuarioLogado) > 0 ? <Navigate to='/' /> : null}
 
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
@@ -48,6 +65,7 @@ function Login() {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

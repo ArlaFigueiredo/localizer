@@ -1,31 +1,34 @@
 import React from 'react';
 import './navbar.css';
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom'
 
 function Navbar(){
 
+    const dispatch = useDispatch();
+    const userEmail = useSelector(state => state.usuarioEmail);
+
     return(
         <nav className="navbar navbar-expand-lg">
-            <i class="far fa-compass text-white fa-2x"></i>
+            <i className="far fa-compass text-white fa-2x"> Localizer</i>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars text-white"></i>
+                    <i className="fas fa-bars text-white"></i>
                 </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
 
-                    <li className="nav-item"><a className="nav-link ml-2" to="/">Home</a></li> 
+                    <li className="nav-item"><Link className="nav-link ml-2" to="/">Home</Link></li> 
 
                     {           
                         useSelector(state => state.usuarioLogado) > 0 ?                  
                     <>                        
-                        <li className="nav-item"><a className="nav-link" >Publicar Evento</a></li> 
-                        <li className="nav-item"><a className="nav-link" >Meus Eventos</a></li> 
-                        <li className="nav-item"><a className="nav-link" >Sair</a></li> 
+                        <li className="nav-item"><button  className="btn btn-outline-light" onClick={() => dispatch({type: 'LOG_OUT'})   }>Sair</button ></li> 
+                        <li><button  className="btn btn-outline-light ml-2">{userEmail}</button ></li>
                     </>
                     :
                     <>
-                    <li className="nav-item"><a className="nav-link" >Cadastrar</a></li> 
-                    <li className="nav-item"><a className="nav-link" >Login</a></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-cliente" >Cadastrar</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/login" >Login</Link ></li> 
                     </>
                     }
                     
