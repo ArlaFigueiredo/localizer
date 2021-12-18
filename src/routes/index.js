@@ -6,6 +6,7 @@ import Login from '../pages/login';
 import CadastroCliente from '../pages/cadastro-cliente';
 import CadastroReserva from '../pages/cadastro-reserva';
 import CadastroFuncionario from '../pages/cadastro-funcionario';
+import CadastroFornecedor from '../pages/cadastro-fornecedor';
 import Home from '../pages/home';
 
 
@@ -17,6 +18,7 @@ export default function MainRoutes() {
             <Route exact path='/cadastro-cliente' element={<CadastroCliente />} ></Route>
             <Route exact path='/cadastro-reserva' element={<CadastroReserva />} ></Route>
             <Route exact path='/cadastro-funcionario' element={<CadastroFuncionario />} ></Route>
+            <Route exact path='/cadastro-fornecedor' element={<CadastroFornecedor />} ></Route>
             
         </Routes>
     )

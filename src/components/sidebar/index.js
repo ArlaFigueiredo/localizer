@@ -42,13 +42,13 @@ function Sidebar() {
                     </>
                     :
                     <>
-                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-cliente" >Gerenciar Reservas</Link ></li> 
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Cadastrar Veiculo</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Editar Veiculo</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Checklist Devolução</Link ></li> 
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Cadastrar Fornecedor</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Relatório Receitas</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/login" >Relatório Despesas</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Gerenciar Reservas</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Cadastrar Veiculo</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Editar Veiculo</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Checklist Devolução</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-fornecedor" >Cadastrar Fornecedor</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Relatório Receitas</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Relatório Despesas</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/cadastro-funcionario" >Cadastrar Funcionário</Link ></li>
                     </>
                     }
