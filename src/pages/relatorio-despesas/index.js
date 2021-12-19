@@ -39,8 +39,11 @@ function RelatorioDespesa() {
 
     useEffect(() => {
         fetchDespesas();
-        console.log(despesas)
     }, []);
+
+    async function cadastrar() {
+        console.log(despesas);
+    }
 
     return (
         <div>
@@ -62,6 +65,9 @@ function RelatorioDespesa() {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="col-12 mt-3">
+                    <button onClick={cadastrar} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                 </div>
             </div>
 
