@@ -42,13 +42,23 @@ function Sidebar() {
                     </>
                     :
                     <>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Gerenciar Reservas</Link ></li> 
-                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-veiculo" >Cadastrar Veiculo</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Editar Veiculo</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Checklist Devolução</Link ></li> 
-                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-fornecedor" >Cadastrar Fornecedor</Link ></li>
+                    <span className="badge bg-danger mt-2 mb-2">Locações</span>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Gerenciar Reservas</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Emissão de Contrato</Link ></li> 
+                    
+                    <span className="badge bg-danger mt-2 mb-2">Devoluções</span>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Cadastrar Devolução</Link ></li> 
+                    
+                    <span className="badge bg-danger mt-2 mb-2">Lançamentos</span>
+                    <li className="nav-item"><Link  className="nav-link" to="/" >Lançamento Despesas</Link ></li>
+                    
+                    <span className="badge bg-danger mt-2 mb-2">Relatórios</span>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Relatório Receitas</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Relatório Despesas</Link ></li>
+                    
+                    <span className="badge bg-danger mt-2 mb-2">Cadastros</span>
+                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-veiculo" >Cadastrar Veiculo</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-fornecedor" >Cadastrar Fornecedor</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/cadastro-funcionario" >Cadastrar Funcionário</Link ></li>
                     </>
                     }
