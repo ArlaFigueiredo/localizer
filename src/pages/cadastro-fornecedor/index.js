@@ -78,7 +78,7 @@ function CadastroFornecedor() {
                                     </div>
 
                                     <div className="col-6">
-                                        <label className="text-dark">Razão Soocial:</label>
+                                        <label className="text-dark">Razão Sooial:</label>
                                         <input onChange={(e) => setRazaoSocial(e.target.value)} type="text" className="form-control" />
                                     </div>
 

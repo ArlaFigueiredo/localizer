@@ -28,7 +28,7 @@ function Sidebar() {
                         useSelector(state => state.usuarioPrivilege) === "CLIENTE" ?                  
                     <> 
                     <li className="nav-item">
-                        <Link to='/cadastro-reserva' className="nav-link">Reservar</Link>
+                        <Link to='/escolha-reserva' className="nav-link">Reservar</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link">Minhas Reservas</a>
@@ -43,7 +43,7 @@ function Sidebar() {
                     :
                     <>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Gerenciar Reservas</Link ></li> 
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Cadastrar Veiculo</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/cadastro-veiculo" >Cadastrar Veiculo</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Editar Veiculo</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Checklist Devolução</Link ></li> 
                     <li className="nav-item"><Link  className="nav-link" to="/cadastro-fornecedor" >Cadastrar Fornecedor</Link ></li>

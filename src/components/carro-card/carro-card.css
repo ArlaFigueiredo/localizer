@@ -1,0 +1,26 @@
+.rodape-card{
+    color: #614ea6;
+    height: 35px;
+}
+
+.btn-reserva{
+    background-color: #f26522;
+    color: #fff;
+}
+
+.btn-reserva:hover{
+    background-color: #f24216;
+    color: #fff;
+}
+
+.card-text{
+    max-height: 70px;
+    min-height: 70px;
+    overflow: hidden;
+}
+
+.img-cartao{
+    max-height: 200px;
+    max-height: 100px;
+    min-width: 100%;
+}

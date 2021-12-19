@@ -22,12 +22,14 @@ function Login() {
         const querySnapshot = await getDocs(q);
         let password = undefined;
         let privilege = undefined;
+        let userID = undefined;
         querySnapshot.forEach((doc) => {
+            userID = doc.id;
             password = doc.data().senha;
             privilege = doc.data().privilege;
         });
         if (password === senha) {
-            dispatch({type: 'LOG_IN', usuarioEmail: email, usuarioPrivilege: privilege})
+            dispatch({type: 'LOG_IN', usuarioEmail: email, usuarioPrivilege: privilege, usuarioID: userID})
             setMsgTipo('sucesso');
         } else {
             setMsgTipo('erro');

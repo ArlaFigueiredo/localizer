@@ -1,0 +1,21 @@
+.form-login{
+    max-width: 650px;
+}
+
+.btn-cadastro{
+    background-color: #f26522;
+    color: #fff;
+}
+
+.btn-cadastro:hover{
+    background-color:  #16f26a;
+    color: #fff;
+}
+.badge{
+    background-color:#f26522;
+    color: #fff;
+}
+
+.mx-auto{
+    color: #f26522;
+}
