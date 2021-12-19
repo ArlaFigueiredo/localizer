@@ -6,18 +6,18 @@ import Sidebar from '../../components/sidebar';
 
 
 function RelatorioDespesa() {
+    const [despesas, setDespesas] = useState([]);
 
     const [options, setOptions] = useState({
         title: 'Gráfico de Despesas'
     })
     const [data, setData] = useState([
-        ['Tipo', 'Quantidade'],
-        ['React', 100],
-        ['Angula', 80],
-        ['Vue', 50],
+        ['Tipo', 'Valor'],
+        ['COMPRA DE VEICULO', 0],
+        ['MANUNTEÇAÕ',0],
+        ['SERVIÇO',0],
+        ['FOLHA DE PAGAMENTO', 0]
     ])
-
-    const [despesas, setDespesas] = useState([]);
 
     async function fetchDespesas() {
         let db = getFirestore();
@@ -41,8 +41,38 @@ function RelatorioDespesa() {
         fetchDespesas();
     }, []);
 
+    function getValoresDespesas() {
+        let valoresDespesas = {
+            veiculo: 0,
+            manuntencao: 0,
+            servico: 0,
+            folha: 0
+        }
+        for (let i = 0; i < despesas.length; i++) {
+            if (despesas[i].tipo === 'SERVIÇO')
+                valoresDespesas.servico += parseInt(despesas[i].valor);
+            if (despesas[i].tipo === 'COMPRA DE VEICULO')
+                valoresDespesas.veiculo += parseInt(despesas[i].valor);
+            if (despesas[i].tipo === 'FOLHA DE PAGAMENTO')
+                valoresDespesas.folha += parseInt(despesas[i].valor);
+            if (despesas[i].tipo === 'MANUTENÇAO')
+                valoresDespesas.manuntencao += parseInt(despesas[i].valor);
+        }
+        let dataRelatorio = [
+            ['Tipo', 'Valor'],
+            ['COMPRA DE VEICULO', valoresDespesas.veiculo],
+            ['MANUNTEÇAÕ', valoresDespesas.manuntencao],
+            ['SERVIÇO', valoresDespesas.servico],
+            ['FOLHA DE PAGAMENTO', valoresDespesas.folha]
+        ]
+
+        setData(dataRelatorio);
+    }
+
+  
+
     async function cadastrar() {
-        console.log(despesas);
+        getValoresDespesas()
     }
 
     return (
@@ -53,7 +83,7 @@ function RelatorioDespesa() {
                 <div className="card text-white bg-light ml-5 mr-5 mt-5">
                     <div className="card-body">
                         <div className="col-12 mt-5 ml-2 mr-2">
-                            <div className="row">
+                            <div className="col-6">
                                 <h1 className="mx-auto">Relatório de Despesa</h1>
                                 <Chart
                                     width={'500px'}
@@ -67,7 +97,7 @@ function RelatorioDespesa() {
                     </div>
                 </div>
                 <div className="col-12 mt-3">
-                    <button onClick={cadastrar} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
+                    <button onClick={cadastrar} className="btn btn-block btn-cadastro" type="button">Gerar Relatório de Despesas </button>
                 </div>
             </div>
 
