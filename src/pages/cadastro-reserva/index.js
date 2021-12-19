@@ -106,6 +106,9 @@ function CadastroReserva() {
                 seguroRoubo: seguroRoubo,
                 veiculoId: id,
                 valorTotal: valorTotal,
+                status: "PENDENTE",
+                multa: null,
+                funcionarioId: null,
             })
             setMsgTipo('sucesso');
         } catch (e) {
