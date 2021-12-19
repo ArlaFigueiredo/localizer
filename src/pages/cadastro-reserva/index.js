@@ -55,7 +55,6 @@ function CadastroReserva() {
     }
 
     useEffect(() => {
-        console.log("Executou");
         fetchVeiculo();
     }, []);
 
