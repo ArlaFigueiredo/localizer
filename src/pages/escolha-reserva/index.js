@@ -45,23 +45,9 @@ function EscolhaReserva() {
         setVeiculos(lista);
     }
 
-
     useEffect(() => {
         fetchVeiculos();
     }, []);
-
-    async function cadastrar() {
-
-        setMsgTipo(null);
-        let db = getFirestore();
-        try {
-            setMsgTipo('sucesso');
-        } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
-        }
-
-    }
 
     return (
         <>
@@ -85,7 +71,7 @@ function EscolhaReserva() {
                     </ul>
                 </div>
                 <div className="row p-3">
-                    {veiculos.map(item => <CarroCard key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria} escolhido={0} />)}
+                    {veiculos.map(item => <CarroCard key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria}/>)}
                 </div>
             </div>
         </>

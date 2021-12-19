@@ -13,30 +13,31 @@ function MinhasReservas() {
 
     const [reservas, setReservas] = useState([]);
 
+    async function fetchReservas() {
+        let db = getFirestore();
+        let querySnapshot = await getDocs(collection(db, "reserva"));
+        let lista = [];
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                clienteId: doc.data().clienteId,
+                dataFim: doc.data().dataFim,
+                dataInicio: doc.data().dataInicio,
+                seguroColisao: doc.data().seguroColisao,
+                seguroFurto: doc.data().seguroFurto,
+                seguroRoubo: doc.data().seguroRoubo,
+                status: doc.data().status,
+                valorTotal: doc.data().valorTotal,
+                veiculoId: doc.data().veiculoId,
+            });
+        })
+        setReservas(lista);
+    }
 
     useEffect(() => {
-        async function loadReservas() {
-            let db = getFirestore();
-            let querySnapshot = await getDocs(collection(db, "reserva"));
-            let lista = [];
-            querySnapshot.forEach((doc) => {
-                lista.push({
-                    id: doc.id,
-                    clienteId: doc.data().clienteId,
-                    dataFim: doc.data().dataFim,
-                    dataInicio: doc.data().dataInicio,
-                    seguroColisao: doc.data().seguroColisao,
-                    seguroFurto: doc.data().seguroFurto,
-                    seguroRoubo: doc.data().seguroRoubo,
-                    status: doc.data().status,
-                    total: doc.data().total,
-                    veiculoId: doc.data().veiculoId,
-                });
-            })
-            setReservas(lista);
-        }
-        loadReservas();
-    }, [reservas]);
+        console.log("LOAD RESERVAS")
+        fetchReservas();
+    }, []);
 
     return (
         <>
@@ -44,7 +45,7 @@ function MinhasReservas() {
             <Sidebar />
             <div className="container">
                 <div className="row p-3">
-                    {reservas.map(item => <ReservaCard key={item.id} id={item.id} veiculo={item.veiculoId} dataFim={item.dataFim} dataInicio={item.dataInicio} total={item.total} status={item.status}/>)}
+                    {reservas.map(item => <ReservaCard key={item.id} id={item.id} veiculo={item.veiculoId} dataFim={item.dataFim} dataInicio={item.dataInicio} total={item.valorTotal} status={item.status}/>)}
                 </div>
             </div>
         </>

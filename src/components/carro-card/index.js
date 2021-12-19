@@ -4,12 +4,11 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage'
 
 import './carro-card.css';
 
-function CarroCard({id, foto, modelo, marca, categoria, valorDiaria , escolhido}) {
+function CarroCard({ id, foto, modelo, marca, categoria, valorDiaria }) {
 
     const [urlImagem, setUrlImagem] = useState();
 
     useEffect(() => {
-        console.log("carrocard");
         let storage = getStorage();
 
         let storageRef = ref(storage, `imagens/${foto}`);
@@ -17,7 +16,7 @@ function CarroCard({id, foto, modelo, marca, categoria, valorDiaria , escolhido}
         getDownloadURL(storageRef).then(function (url) {
             setUrlImagem(url);
         });
-    }, [urlImagem]);
+    }, []);
 
 
     return (
@@ -30,14 +29,9 @@ function CarroCard({id, foto, modelo, marca, categoria, valorDiaria , escolhido}
                     <span className="badge bg-danger mb-3">{categoria}</span>
                     <span className="badge bg-info ml-2 mb-3">DIÁRIA: R$ {valorDiaria}</span>
                 </div>
-                {           
-                    escolhido === 0 ?                  
-                    <> 
-                        <Link  to={'/cadastro-reserva/' + id} className="btn btn-reserva">Reservar</Link >
-                    </>
-                    :
-                    <></>
-                }
+
+                <Link to={'/cadastro-reserva/' + id} className="btn btn-reserva">Reservar</Link >
+
             </div>
         </div>
     )
