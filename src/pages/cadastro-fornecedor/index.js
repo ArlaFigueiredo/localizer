@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
+import Swal from 'sweetalert2'
 
 import './cadastro-fornecedor.css';
 
@@ -25,12 +24,9 @@ function CadastroFornecedor() {
     const [estado, setEstado] = useState();
     const [email, setEmail] = useState();
 
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
 
     async function cadastrar() {
 
-        setMsgTipo(null);
         let db = getFirestore();
         try {
             let docRef = await addDoc(collection(db, "fornecedor"), {
@@ -49,10 +45,22 @@ function CadastroFornecedor() {
                 cidade: cidade,
                 estado: estado,
             })
-            setMsgTipo('sucesso');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Fornecedor cadastrado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.location.reload(); 
         } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: e,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -155,10 +163,6 @@ function CadastroFornecedor() {
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                             </form>
 
-                            <div className="msg-login text-dark text-center my-5">
-                                {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Fornecedor cadastrado com sucesso!</h3></span>}
-                                {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                            </div>
                         </div>
                     </div>
                 </div>
