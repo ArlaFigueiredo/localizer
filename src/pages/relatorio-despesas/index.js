@@ -21,7 +21,7 @@ function RelatorioDespesa() {
 
     async function fetchDespesas() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "despesa"));
+        let querySnapshot = await getDocs(collection(db, "despesas"));
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({
@@ -33,10 +33,14 @@ function RelatorioDespesa() {
                 dataVencimento: doc.data().dataVencimento,
                 status: doc.data().status,
             });
-        })
+        });
         setDespesas(lista);
     }
 
+    useEffect(() => {
+        fetchDespesas();
+        console.log(despesas)
+    }, []);
 
     return (
         <div>
