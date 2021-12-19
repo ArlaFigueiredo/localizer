@@ -1,20 +1,20 @@
-import {initializeApp, getApps} from 'firebase/app';
+import { initializeApp, getApps } from 'firebase/app';
 
 let firebaseConfig = {
-    apiKey: "AIzaSyAJTSdGxINyM4hyK54UZL1ie-ZFO0mggUs",
-    authDomain: "locadora-1d5c3.firebaseapp.com",
-    projectId: "locadora-1d5c3",
-    storageBucket: "locadora-1d5c3.appspot.com",
-    messagingSenderId: "26755520436",
-    appId: "1:26755520436:web:c687348b6f654e81e084e1",
-    measurementId: "G-9JBRG3609V"
+    apiKey: "AIzaSyCejvPBRgWL0rNHHtd5pvLFKBOBgtzbXfY",
+    authDomain: "localizer-87f8c.firebaseapp.com",
+    projectId: "localizer-87f8c",
+    storageBucket: "localizer-87f8c.appspot.com",
+    messagingSenderId: "385518754032",
+    appId: "1:385518754032:web:f1613c91f18bb21a884a35",
+    measurementId: "G-28X7S9Z7SP"
 };
 
 // Initialize Firebase
 
 let firebase = null;
 
-if(!getApps().length){
+if (!getApps().length) {
     firebase = initializeApp(firebaseConfig);
 }
 

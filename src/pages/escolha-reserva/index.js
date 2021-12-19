@@ -18,35 +18,37 @@ function EscolhaReserva() {
     const [veiculos, setVeiculos] = useState([]);
 
 
+    async function fetchVeiculos() {
+        let db = getFirestore();
+        let querySnapshot = await getDocs(collection(db, "veiculo"));
+        let lista = [];
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                modelo: doc.data().modelo,
+                marca: doc.data().marca,
+                placa: doc.data().placa,
+                cor: doc.data().cor,
+                categoria: doc.data().categoria,
+                chassi: doc.data().chassi,
+                renavam: doc.data().renavam,
+                qtdCadeiras: doc.data().qtdCadeiras,
+                qtdAssentosElevacao: doc.data().qtdAssentosElevacao,
+                gps: doc.data().gps,
+                quilometragem: doc.data().quilometragem,
+                valorDiaria: doc.data().valorDiaria,
+                disponibilidade: doc.data().disponibilidade,
+                nivelCombustivel: doc.data().nivelCombustivel,
+                foto: doc.data().foto
+            });
+        })
+        setVeiculos(lista);
+    }
+
+
     useEffect(() => {
-        async function loadVeiculos() {
-            let db = getFirestore();
-            let querySnapshot = await getDocs(collection(db, "veiculo"));
-            let lista = [];
-            querySnapshot.forEach((doc) => {
-                lista.push({
-                    id: doc.id,
-                    modelo: doc.data().modelo,
-                    marca: doc.data().marca,
-                    placa: doc.data().placa,
-                    cor: doc.data().cor,
-                    categoria: doc.data().categoria,
-                    chassi: doc.data().chassi,
-                    renavam: doc.data().renavam,
-                    qtdCadeiras: doc.data().qtdCadeiras,
-                    qtdAssentosElevacao: doc.data().qtdAssentosElevacao,
-                    gps: doc.data().gps,
-                    quilometragem: doc.data().quilometragem,
-                    valorDiaria: doc.data().valorDiaria,
-                    disponibilidade: doc.data().disponibilidade,
-                    nivelCombustivel: doc.data().nivelCombustivel,
-                    foto: doc.data().foto
-                });
-            })
-            setVeiculos(lista);
-        }
-        loadVeiculos();
-    }, [veiculos]);
+        fetchVeiculos();
+    }, []);
 
     async function cadastrar() {
 
@@ -83,7 +85,7 @@ function EscolhaReserva() {
                     </ul>
                 </div>
                 <div className="row p-3">
-                    {veiculos.map(item => <CarroCard key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria} escolhido={0}/>)}
+                    {veiculos.map(item => <CarroCard key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria} escolhido={0} />)}
                 </div>
             </div>
         </>

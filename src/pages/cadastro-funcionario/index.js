@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 
@@ -14,7 +12,10 @@ function CadastroFuncionario() {
     const [rg, setRg] = useState();
     const [cpf, setCpf] = useState();
     const [cnh, setCnh] = useState();
+    const [telefone, setTelefone] = useState();
     const [dataNascimento, setDataNascimento] = useState();
+
+    const [cep, setCep] = useState();
     const [logradouro, setLogradouro] = useState();
     const [complemento, setComplemento] = useState();
     const [numero, setNumero] = useState();
@@ -49,6 +50,9 @@ function CadastroFuncionario() {
                 rg: rg,
                 cpf: cpf,
                 cnh: cnh,
+                dataNascimento: dataNascimento,
+                telefone: telefone,
+                cep: cep,
                 logradouro: logradouro,
                 complemento: complemento,
                 numero: numero,
@@ -56,7 +60,6 @@ function CadastroFuncionario() {
                 cidade: cidade,
                 estado: estado,
                 usuario: usuarioRef,
-                dataNascimento: dataNascimento,
                 cargo: cargo,
                 salario: salario,
                 carteiraTrabalho: carteiraTrabalho
@@ -105,26 +108,35 @@ function CadastroFuncionario() {
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <div className="col-4">
+                                    <div className="col-3">
                                         <label className="text-dark">RG:</label>
                                         <input onChange={(e) => setRg(e.target.value)} type="text" className="form-control" />
                                     </div>
 
-                                    <div className="col-4">
+                                    <div className="col-3">
                                         <label className="text-dark">CPF:</label>
                                         <input onChange={(e) => setCpf(e.target.value)} type="text" className="form-control" />
                                     </div>
 
-                                    <div className="col-4">
+                                    <div className="col-3">
                                         <label className="text-dark">Carteira de Habilitação:</label>
                                         <input onChange={(e) => setCnh(e.target.value)} type="text" className="form-control" />
+                                    </div>
+
+                                    <div className="col-3">
+                                        <label className="text-dark">Telefone:</label>
+                                        <input onChange={(e) => setTelefone(e.target.value)} type="text" className="form-control" />
                                     </div>
                                 </div>
 
 
                                 <span className="badge">Endereço</span>
                                 <div className="form-group row">
-                                    <div className="col-6">
+                                    <div className="col-2">
+                                        <label className="text-dark">CEP:</label>
+                                        <input onChange={(e) => setCep(e.target.value)} type="text" className="form-control" />
+                                    </div>
+                                    <div className="col-4">
                                         <label className="text-dark">Logradouro:</label>
                                         <input onChange={(e) => setLogradouro(e.target.value)} type="text" className="form-control" />
                                     </div>

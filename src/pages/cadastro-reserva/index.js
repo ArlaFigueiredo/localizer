@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {useParams, useHistory } from 'react-router-dom'
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection, getDoc} from 'firebase/firestore';
+import { useParams, useHistory } from 'react-router-dom'
+import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection, getDoc } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
-import CarroCard from '../../components/carro-card';
-import { useSelector, useDispatch} from 'react-redux';
+import CarroDesc from '../../components/carro-desc';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './cadastro-reserva.css';
 
-function CadastroReserva(props) {
+function CadastroReserva() {
 
-    const {id} = useParams();
+    const { id } = useParams();
     const userID = useSelector(state => state.usuarioID)
 
     const [seguroFurto, setSeguroFurto] = useState();
@@ -22,19 +20,20 @@ function CadastroReserva(props) {
 
     const [dataInicio, setDataInicio] = useState();
     const [dataFim, setDataFim] = useState();
-    const [total, setTotal] = useState();
+    const [valorTotal, setTotal] = useState();
 
     const [msgTipo, setMsgTipo] = useState();
     const [msg, setMsg] = useState();
 
 
-    const [veiculo, setVeiculo] = useState({});
+    const [veiculo, setVeiculo] = useState([]);
 
-    async function loadVeiculo() {
+    async function fetchVeiculo() {
         let db = getFirestore();
-        let docRef =  doc(db,"veiculo", id);
+        let docRef = doc(db, "veiculo", id);
         let veic = await getDoc(docRef);
-        setVeiculo({
+        let lista = [];
+        lista.push({
             id: veic.id,
             modelo: veic.data().modelo,
             marca: veic.data().marca,
@@ -52,21 +51,19 @@ function CadastroReserva(props) {
             nivelCombustivel: veic.data().nivelCombustivel,
             foto: veic.data().foto
         });
+        setVeiculo(lista);
     }
 
     useEffect(() => {
-        loadVeiculo();
-        return () => {
-            setVeiculo({});
-        };
+        console.log("Executou");
+        fetchVeiculo();
     }, []);
 
-    async function cadastrar() {
 
+    async function cadastrar() {
         setMsgTipo(null);
         let db = getFirestore();
         try {
-
             let docRef = await addDoc(collection(db, "reserva"), {
                 clienteId: userID,
                 dataFim: dataFim,
@@ -74,8 +71,8 @@ function CadastroReserva(props) {
                 seguroColisao: seguroColisao,
                 seguroFurto: seguroFurto,
                 seguroRoubo: seguroRoubo,
-                total: total,
-                veiculoId: veiculo.id,
+                veiculoId: id,
+                valorTotal: valorTotal,
             })
             setMsgTipo('sucesso');
         } catch (e) {
@@ -100,7 +97,7 @@ function CadastroReserva(props) {
                             <form>
                                 <span className="badge mb-2">Veiculo escolhido</span>
                                 <div className='col-4 mb-3'>
-                                <CarroCard key={veiculo.id} foto={veiculo.foto} modelo={veiculo.modelo} marca={veiculo.marca} categoria={veiculo.categoria} valorDiaria={veiculo.valorDiaria} escolhido={1}/>
+                                {veiculo.map(item => <CarroDesc key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria}/>)}
                                 </div>
                                 <span className="badge">Escolha as opções de seguro</span>
                                 <div className="form-group row">
@@ -144,7 +141,7 @@ function CadastroReserva(props) {
                                 <div className="form-group row">
                                     <div className="input-group mb-3 ml-3 mr-3">
                                         <span className="input-group-text">R$</span>
-                                        <input onChange={(e) => setTotal(e.target.value)} type="text" className="form-control" disabled value="600,00"/>
+                                        <input onChange={(e) => setTotal(e.target.value)} type="text" className="form-control"/>
                                     </div>
                                 </div>
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
