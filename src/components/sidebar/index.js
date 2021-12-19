@@ -47,7 +47,8 @@ function Sidebar() {
                     <li className="nav-item"><Link  className="nav-link" to="/" >Emissão de Contrato</Link ></li> 
                     
                     <span className="badge bg-danger mt-2 mb-2">Devoluções</span>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Cadastrar Devolução</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/devolucao" >Cadastrar Devolução</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/inspecao" >Inspeção</Link ></li> 
                     
                     <span className="badge bg-danger mt-2 mb-2">Lançamentos</span>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Lançamento Despesas</Link ></li>

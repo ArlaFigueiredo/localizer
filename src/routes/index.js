@@ -11,7 +11,9 @@ import GereciaReserva from '../pages/gerencia-reserva';
 import CadastroFuncionario from '../pages/cadastro-funcionario';
 import CadastroFornecedor from '../pages/cadastro-fornecedor';
 import CadastroVeiculo from '../pages/cadastro-veiculo';
+import Devolucao from '../pages/devolucao';
 import Home from '../pages/home';
+import InspecaoVeiculo from '../pages/inspecao-veiculo';
 
 
 export default function MainRoutes() {
@@ -27,6 +29,8 @@ export default function MainRoutes() {
             <Route exact path='/escolha-reserva' element={<EscolhaReserva />} ></Route>
             <Route exact path='/minhas-reservas' element={<MinhasReservas />} ></Route>
             <Route exact path='/gerencia-reserva' element={<GereciaReserva />} ></Route>
+            <Route exact path='/devolucao' element={<Devolucao />} ></Route>
+            <Route exact path='/inspecao' element={<InspecaoVeiculo />} ></Route>
         </Routes>
     )
 }
