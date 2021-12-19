@@ -1,45 +1,57 @@
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import { useState } from 'react';
+import { collection, getDocs, getFirestore, addDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
+import Swal from 'sweetalert2'
 
 function CadastroDespesa() {
 
     const [descricao, setDescricao] = useState();
     const [valor, setValor] = useState();
-    const [fornecedor, setFornecedor] = useState();
+    const [fornecedorId, setFornecedor] = useState();
     const [tipo, setTipo] = useState();
     const [dataVencimento, setDataVencimento] = useState();
 
-    async function fetchVeiculo() {
+    const [fornecedores, setFornecedores] = useState([]);
+
+    async function fetchFornecedor() {
         let db = getFirestore();
-        let docRef = doc(db, "fornecedor");
-        let veic = await getDoc(docRef);
+        let querySnapshot = await getDocs(collection(db, "fornecedor"));
         let lista = [];
-        lista.push({
-            id: veic.id,
-            modelo: veic.data().modelo,
-            marca: veic.data().marca,
-            placa: veic.data().placa,
-            cor: veic.data().cor,
-            categoria: veic.data().categoria,
-            chassi: veic.data().chassi,
-            renavam: veic.data().renavam,
-            qtdCadeiras: veic.data().qtdCadeiras,
-            qtdAssentosElevacao: veic.data().qtdAssentosElevacao,
-            gps: veic.data().gps,
-            quilometragem: veic.data().quilometragem,
-            valorDiaria: veic.data().valorDiaria,
-            disponibilidade: veic.data().disponibilidade,
-            nivelCombustivel: veic.data().nivelCombustivel,
-            foto: veic.data().foto
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                nomeFantasia: doc.data().nomeFantasia,
+                razaoSocial: doc.data().razaoSocial,
+            });
         });
-        setFornecedor(lista);
+        setFornecedores(lista);
     }
 
+    useEffect(() => {
+        console.log("fornecedores")
+        fetchFornecedor();
+    }, []);
 
-    function cadastrar() {
-        console.log(valor)
+
+    async function cadastrar() {
+        let db = getFirestore();
+        let despesaRef = await addDoc(collection(db, "despesas"), {
+            descricao: descricao,
+            tipo: tipo,
+            fornecedorId: fornecedorId,
+            valor: valor,
+            dataVencimento: dataVencimento,
+            status: "PENDENTE",
+        });
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Despesa cadastrada com sucesso!',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 
     return (
@@ -61,7 +73,7 @@ function CadastroDespesa() {
                                         <label className="text-dark">Fornecedor:</label>
                                         <select onChange={(e) => setFornecedor(e.target.value)} className="form-control">
                                             <option>-- Selecione o Fornecedor --</option>
-                                            {/* {fornecedor.map(item => <option key={item.id}>{item.id}</option>)} */}
+                                            {fornecedores.map(item => <option key={item.id}>{item.id}</option>)}
                                         </select>
                                     </div>
 
