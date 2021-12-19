@@ -1,3 +1,4 @@
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { Chart } from "react-google-charts";
 import Navbar from '../../components/navbar';
@@ -15,6 +16,26 @@ function RelatorioDespesa() {
         ['Angula', 80],
         ['Vue', 50],
     ])
+
+    const [despesas, setDespesas] = useState([]);
+
+    async function fetchDespesas() {
+        let db = getFirestore();
+        let querySnapshot = await getDocs(collection(db, "despesa"));
+        let lista = [];
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                descricao: doc.data().descricao,
+                tipo: doc.data().tipo,
+                fornecedorId: doc.data().fornecedorId,
+                valor: doc.data().valor,
+                dataVencimento: doc.data().dataVencimento,
+                status: doc.data().status,
+            });
+        })
+        setDespesas(lista);
+    }
 
 
     return (
