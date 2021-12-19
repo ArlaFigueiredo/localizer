@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
-import ReservaCard from '../../components/reserva-card';
+import ReservaRow from '../../components/reserva-row';
 
-
-function MinhasReservas() {
-
+function GerenciaReserva() {
 
     const [reservas, setReservas] = useState([]);
 
@@ -35,6 +32,7 @@ function MinhasReservas() {
     }
 
     useEffect(() => {
+        console.log("LOAD RESERVAS")
         fetchReservas();
     }, []);
 
@@ -43,12 +41,26 @@ function MinhasReservas() {
             <Navbar />
             <Sidebar />
             <div className="container">
-                <div className="row p-3">
-                    {reservas.map(item => <ReservaCard key={item.id} id={item.id} veiculo={item.veiculoId} dataFim={item.dataFim} dataInicio={item.dataInicio} total={item.valorTotal} status={item.status}/>)}
-                </div>
+                <table className="table table-striped table-hover mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">Reserva-ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Cliente-ID</th>
+                            <th scope="col">Veiculo-ID</th>
+                            <th scope="col">Data Inicio</th>
+                            <th scope="col">Data Fim</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Aprovação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {reservas.map(item => <ReservaRow key={item.id} reserva={item} />)}
+                    </tbody>
+                </table>
             </div>
         </>
     )
 }
 
-export default MinhasReservas;
+export default GerenciaReserva;

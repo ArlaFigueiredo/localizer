@@ -43,7 +43,7 @@ function Sidebar() {
                     :
                     <>
                     <span className="badge bg-danger mt-2 mb-2">Locações</span>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Gerenciar Reservas</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/gerencia-reserva" >Gerenciar Reservas</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/" >Emissão de Contrato</Link ></li> 
                     
                     <span className="badge bg-danger mt-2 mb-2">Devoluções</span>
