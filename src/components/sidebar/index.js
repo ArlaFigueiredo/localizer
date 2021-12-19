@@ -31,7 +31,7 @@ function Sidebar() {
                         <Link to='/escolha-reserva' className="nav-link">Reservar</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link">Minhas Reservas</a>
+                        <Link to='/minhas-reservas' className="nav-link">Minhas Reservas</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link">Meus Débitos</a>

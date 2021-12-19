@@ -6,6 +6,7 @@ import Login from '../pages/login';
 import CadastroCliente from '../pages/cadastro-cliente';
 import CadastroReserva from '../pages/cadastro-reserva';
 import EscolhaReserva from '../pages/escolha-reserva';
+import MinhasReservas from '../pages/minhas-reservas';
 import CadastroFuncionario from '../pages/cadastro-funcionario';
 import CadastroFornecedor from '../pages/cadastro-fornecedor';
 import CadastroVeiculo from '../pages/cadastro-veiculo';
@@ -23,6 +24,7 @@ export default function MainRoutes() {
             <Route exact path='/cadastro-fornecedor' element={<CadastroFornecedor />} ></Route>
             <Route exact path='/cadastro-veiculo' element={<CadastroVeiculo />} ></Route>
             <Route exact path='/escolha-reserva' element={<EscolhaReserva />} ></Route>
+            <Route exact path='/minhas-reservas' element={<MinhasReservas />} ></Route>
         </Routes>
     )
 }

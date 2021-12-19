@@ -34,7 +34,7 @@ function CadastroReserva(props) {
         let db = getFirestore();
         let docRef =  doc(db,"veiculo", id);
         let veic = await getDoc(docRef);
-        let veiculoObj = {
+        setVeiculo({
             id: veic.id,
             modelo: veic.data().modelo,
             marca: veic.data().marca,
@@ -51,9 +51,7 @@ function CadastroReserva(props) {
             disponibilidade: veic.data().disponibilidade,
             nivelCombustivel: veic.data().nivelCombustivel,
             foto: veic.data().foto
-        };
-    
-        setVeiculo(veiculoObj);
+        });
     }
 
     useEffect(() => {
