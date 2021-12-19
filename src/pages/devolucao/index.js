@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
 import { getStorage, ref, uploadString, uploadBytes, getDownloadURL } from 'firebase/storage'
 import Navbar from '../../components/navbar';
@@ -82,59 +80,6 @@ function Devolucao() {
                             </div>
 
                             <form>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Retrovisores
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Farol
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Extintor de Incêncio
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Alarme
-                                    </label>
-                                </div><div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Pneus
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Pneu Reverva
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Lataria
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Parachoque Dianteiro
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
-                                    <label className="form-check-label text-dark" for="defaultCheck1">
-                                        Parachoque Traseiro
-                                    </label>
-                                </div>
                                 <span className="badge">Atualizações Veiculo</span>
                                 <div className="form-group row">
 

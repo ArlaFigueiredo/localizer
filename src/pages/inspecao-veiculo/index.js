@@ -86,7 +86,7 @@ function InspecaoVeiculo() {
         let docRef = doc(db, "reserva", reservaId);
         
         await updateDoc(docRef, {
-            status: "EM INSPECAO"
+            status: "INSPECIONADO"
         });
 
         Swal.fire({
