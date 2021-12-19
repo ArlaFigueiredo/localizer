@@ -12,6 +12,7 @@ import CadastroFuncionario from '../pages/cadastro-funcionario';
 import CadastroFornecedor from '../pages/cadastro-fornecedor';
 import CadastroVeiculo from '../pages/cadastro-veiculo';
 import Devolucao from '../pages/devolucao';
+import CadastroDespesa from '../pages/cadastro-despesa'
 import Home from '../pages/home';
 import InspecaoVeiculo from '../pages/inspecao-veiculo';
 
@@ -31,6 +32,7 @@ export default function MainRoutes() {
             <Route exact path='/gerencia-reserva' element={<GereciaReserva />} ></Route>
             <Route exact path='/devolucao' element={<Devolucao />} ></Route>
             <Route exact path='/inspecao' element={<InspecaoVeiculo />} ></Route>
+            <Route exact path='/cadastro-despesa' element={<CadastroDespesa />} ></Route>
         </Routes>
     )
 }
