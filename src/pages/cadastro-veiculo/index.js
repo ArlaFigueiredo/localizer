@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
-import { getStorage, ref, uploadString, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { getStorage, uploadBytes, ref} from 'firebase/storage'
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
+import Swal from 'sweetalert2'
 
 import './cadastro-veiculo.css';
 
@@ -27,14 +26,8 @@ function CadastroVeiculo() {
 
     const [foto, setFoto] = useState();
 
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
-
-
     async function cadastrar() {
 
-        setMsgTipo(null);
-        console.log(foto)
         let db = getFirestore();
         let storage = getStorage();
 
@@ -63,10 +56,22 @@ function CadastroVeiculo() {
                 nivelCombustivel: nivelCombustivel,
                 foto: foto.name
             });
-            setMsgTipo('sucesso');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Veiculo cadastrado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.location.reload(); 
         } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: e,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -186,11 +191,6 @@ function CadastroVeiculo() {
 
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                             </form>
-
-                            <div className="msg-login text-dark text-center my-5">
-                                {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Veículo cadastrado com sucesso!</h3></span>}
-                                {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                            </div>
                         </div>
                     </div>
                 </div>
