@@ -6,6 +6,8 @@ import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import CarroDesc from '../../components/carro-desc';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
+import Swal from 'sweetalert2'
 
 import './cadastro-reserva.css';
 
@@ -14,13 +16,13 @@ function CadastroReserva() {
     const { id } = useParams();
     const userID = useSelector(state => state.usuarioID)
 
-    const [seguroFurto, setSeguroFurto] = useState();
-    const [seguroRoubo, setSeguroRoubo] = useState();
-    const [seguroColisao, setSeguroColisao] = useState();
+    const [seguroFurto, setSeguroFurto] = useState('NAO');
+    const [seguroRoubo, setSeguroRoubo] = useState('NAO');
+    const [seguroColisao, setSeguroColisao] = useState('NAO');
 
-    const [dataInicio, setDataInicio] = useState();
-    const [dataFim, setDataFim] = useState();
-    const [valorTotal, setTotal] = useState();
+    const [dataInicio, setDataInicio] = useState(null);
+    const [dataFim, setDataFim] = useState(null);
+    const [valorTotal, setTotal] = useState('');
 
     const [msgTipo, setMsgTipo] = useState();
     const [msg, setMsg] = useState();
@@ -58,6 +60,38 @@ function CadastroReserva() {
         fetchVeiculo();
     }, []);
 
+    useEffect(() => {
+        if (dataInicio !== null && dataFim !== null)
+            calculaValorTotal();
+    }, [dataFim, dataInicio]);
+
+
+    function calculaValorTotal() {
+        let diariaSeguro = 0;
+        if (seguroFurto === 'SIM')
+            diariaSeguro += 5;
+        if (seguroRoubo === 'SIM')
+            diariaSeguro += 10;
+        if (seguroColisao === 'SIM')
+            diariaSeguro += 15;
+
+        let dias = moment(dataFim).diff(moment(dataInicio), 'days');
+        if (dias < 0) {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'A data final deve ser maior com a data de inicio',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        else if (dias == 0) {
+            dias = 1
+            setTotal((diariaSeguro * dias) + (parseInt(veiculo[0].valorDiaria) * dias))
+        } else {
+            setTotal((diariaSeguro * dias) + (parseInt(veiculo[0].valorDiaria) * dias))
+        }
+    }
 
     async function cadastrar() {
         setMsgTipo(null);
@@ -78,7 +112,6 @@ function CadastroReserva() {
             setMsgTipo('erro');
             setMsg(e);
         }
-
     }
 
     return (
@@ -96,7 +129,7 @@ function CadastroReserva() {
                             <form>
                                 <span className="badge mb-2">Veiculo escolhido</span>
                                 <div className='col-4 mb-3'>
-                                {veiculo.map(item => <CarroDesc key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria}/>)}
+                                    {veiculo.map(item => <CarroDesc key={item.id} id={item.id} foto={item.foto} modelo={item.modelo} marca={item.marca} categoria={item.categoria} valorDiaria={item.valorDiaria} />)}
                                 </div>
                                 <span className="badge">Escolha as opções de seguro</span>
                                 <div className="form-group row">
@@ -140,7 +173,7 @@ function CadastroReserva() {
                                 <div className="form-group row">
                                     <div className="input-group mb-3 ml-3 mr-3">
                                         <span className="input-group-text">R$</span>
-                                        <input onChange={(e) => setTotal(e.target.value)} type="text" className="form-control"/>
+                                        <input disabled value={valorTotal} onChange={(e) => setTotal(e.target.value)} type="text" className="form-control" />
                                     </div>
                                 </div>
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
