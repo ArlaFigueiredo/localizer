@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
+import Swal from 'sweetalert2'
 
 import './cadastro-funcionario.css';
 
@@ -30,12 +31,9 @@ function CadastroFuncionario() {
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
 
     async function cadastrar() {
 
-        setMsgTipo(null);
         let db = getFirestore();
         try {
 
@@ -64,10 +62,22 @@ function CadastroFuncionario() {
                 salario: salario,
                 carteiraTrabalho: carteiraTrabalho
             })
-            setMsgTipo('sucesso');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Funcionário cadastrado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.location.reload();
         } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: e,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -211,11 +221,6 @@ function CadastroFuncionario() {
 
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                             </form>
-
-                            <div className="msg-login text-dark text-center my-5">
-                                {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Funcionário cadastrado com sucesso!</h3></span>}
-                                {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                            </div>
                         </div>
                     </div>
                 </div>
