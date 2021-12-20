@@ -34,9 +34,6 @@ function Sidebar() {
                         <Link to='/minhas-reservas' className="nav-link">Minhas Reservas</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link">Meus Débitos</a>
-                    </li>
-                    <li className="nav-item">
                         <a className="nav-link">Comprovantes</a>
                     </li>
                     </>
