@@ -20,6 +20,7 @@ import EmissaoContrato from '../pages/emissao-contrato'
 import RelatorioReceita from '../pages/relatorio-receita'
 import ListagemDevolucao from '../pages/listagem-devolucao';
 import Example from '../components/contrato-document';
+import ClienteComprovantes from '../pages/cliente-comprovantes'
 
 export default function MainRoutes() {
     return (
@@ -42,6 +43,7 @@ export default function MainRoutes() {
             <Route exact path='/relatorio-receita' element={<RelatorioReceita />} ></Route>
             <Route exact path='/listagem-devolucao' element={<ListagemDevolucao />} ></Route>
             <Route exact path='/contrato-document' element={<Example />} ></Route>
+            <Route exact path='/cliente-comprovantes' element={<ClienteComprovantes />} ></Route>
         </Routes>
     )
 }

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import firebase from '../../config/firebase';
 import { getFirestore, updateDoc, doc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import PDF from '../contrato-document';
+import PDF from '../comprovante-document';
 import Modal from 'react-modal';
 // import Pdf from "react-to-pdf";
 
@@ -20,7 +20,7 @@ const customStyles = {
     }
 };
 
-function EmitirContratoRow({ reserva }, props) {
+function ComprovantesRow({ reserva }, props) {
 
     const userID = useSelector(state => state.usuarioID);
     const [postSubmitted, setPostSubmitted] = useState(false);
@@ -70,7 +70,7 @@ function EmitirContratoRow({ reserva }, props) {
 
 
         Swal.fire({
-            title: 'Confirma a impressão do contrato?',
+            title: 'Confirma a geração de comprovante?',
             confirmButtonText: 'Imprimir',
         }).then((reserva) => {
             /* Read more about isConfirmed, isDenied below */
@@ -101,7 +101,7 @@ function EmitirContratoRow({ reserva }, props) {
                 <p className="text-bold">R$ {reserva.valorTotal}</p>
             </td>
             <td>
-                <button onClick={() => { Example() }} type="button" className="btn btn-success">Emitir Contrato</button>
+                <button onClick={() => { Example() }} type="button" className="btn btn-success">Emitir Comprovante</button>
             </td>
             <td>
                 {postSubmitted ?
@@ -136,4 +136,4 @@ function EmitirContratoRow({ reserva }, props) {
     )
 }
 
-export default EmitirContratoRow;
+export default ComprovantesRow;
