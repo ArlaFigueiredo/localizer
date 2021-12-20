@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import firebase from '../../config/firebase';
+import { getFirestore, updateDoc, doc, getDocs, query, where, collection } from 'firebase/firestore';
 import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 
 const PDF = (props) => {
-    
-    function handleGerarPdf(){
-        
+
+    function handleGerarPdf() {
+
     }
 
     const dataDeEmissaoDoContrato = new Date();
-    
+
+    const [cliente, setCliente] = useState({});
+
+    async function fetchCliente() {
+        let db = getFirestore();
+        const clienteRef = collection(db, "cliente");
+        const q = query(clienteRef, where("usuario", "==", props.clienteID));
+        const querySnapshot = await getDocs(q);
+        let lista = [];
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                nome: doc.data().nome,
+                cpf: doc.data().cpf,
+                logradouro: doc.data().logradouro,
+                cep: doc.data().cep,
+                bairro: doc.data().bairro,
+                cidade: doc.data().cidade,
+            });
+        })
+        setCliente(lista[0]);
+    }
+
+    useEffect(() => {
+        console.log("MONTA CLIENTE")
+        fetchCliente();
+    }, []);
+
     return (
         <div className="WordSection1">
             <p
@@ -111,12 +140,12 @@ const PDF = (props) => {
                         <u>CONTRATADA</u>
                     </b>
                     <span style={{ msoBidiFontWeight: "bold" }}>, de</span> outro lado a{" "}
-                    <b>{props.clienteID}</b>
+                    <b>{cliente.nome}</b>
                     <span style={{ msoBidiFontWeight: "bold" }}>
-                        , CLIENTE_ENDEREÇO
+                        , {cliente.cep}, {cliente.logradouro}, {cliente.bairro}, {cliente.cidade}
                     </span>
                     , inscrita no cadastro nacional de Pessoas Físicas sob{" "}
-                    <span style={{ msoBidiFontWeight: "bold" }}>número </span>CLIENTE_CPF, a
+                    <span style={{ msoBidiFontWeight: "bold" }}>número </span>{cliente.cpf}, a
                     partir de agora denominada simplesmente{" "}
                     <b>
                         <u>CONTRATANTE</u>
@@ -262,9 +291,9 @@ const PDF = (props) => {
                                 align="center"
                             >
                                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                    {props.clienteID}
+                                    {cliente.cpf}
                                     <br />
-                                    CLIENTE_NOME
+                                    {cliente.nome}
                                     <p />
                                 </span>
                             </p>
@@ -278,7 +307,7 @@ const PDF = (props) => {
                                     <p />
                                 </span>
                             </p>
-                            
+
                         </td>
                         <td
                             style={{
