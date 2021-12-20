@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import firebase from '../../config/firebase';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, query, where } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
-import ReservaRow from '../../components/reserva-row';
+import DevolucaoRow from '../../components/devolucao-row'
 
-function ListagemReserva() {
+function ListagemDevolucao() {
 
     const [reservas, setReservas] = useState([]);
 
@@ -14,7 +13,7 @@ function ListagemReserva() {
     async function fetchReservas() {
         let db = getFirestore();
         const reservaRef = collection(db, "reserva");
-        const q = query(reservaRef, where("status", "==", "EM INSPECAO"));
+        const q = query(reservaRef, where("status", "==", "INSPECIONADO"));
         const querySnapshot = await getDocs(q);
         let lista = [];
         querySnapshot.forEach((doc) => {
@@ -54,7 +53,7 @@ function ListagemReserva() {
                             <th scope="col">Data Fim</th>
                             <th scope="col">Status Inspeção</th>
                             <th scope="col">Multa</th>
-                            <th scope="col">Detalhar</th>
+                            <th scope="col">Devolver</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,4 +65,4 @@ function ListagemReserva() {
     )
 }
 
-export default ListagemReserva;
+export default ListagemDevolucao;
