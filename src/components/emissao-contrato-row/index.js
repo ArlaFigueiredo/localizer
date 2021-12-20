@@ -24,28 +24,7 @@ function EmitirContratoRow({ reserva }, props) {
 
     const userID = useSelector(state => state.usuarioID);
     const [postSubmitted, setPostSubmitted] = useState(false);
-    const [cliente, setCliente] = useState({});
-
-    async function fetchCliente() {
-        let db = getFirestore();
-        let docRef = doc(db, "cliente", reserva.clienteId);
-        let cliente = await getDoc(docRef);
-        let lista = [];
-        lista.push({
-            id: cliente.id,
-            nome: cliente.data().nome,
-            cpf: cliente.data().cpf,
-            logradouro: cliente.data().logradouro,
-            cep: cliente.data().cep,
-            bairro: cliente.data().bairro,
-            cidade: cliente.data().cidade,
-        });
-        setCliente(lista[0]);
-    }
-
-    useEffect(() => {
-        fetchCliente();
-    }, []);
+    
 
 
     function afterOpenModal(e) {

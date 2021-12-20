@@ -43,7 +43,6 @@ const PDF = (props) => {
     }
 
     useEffect(() => {
-        console.log("MONTA CLIENTE")
         fetchCliente();
     }, []);
 
@@ -85,7 +84,7 @@ const PDF = (props) => {
                 </a>
                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
                     , QUE FAZEM ENTRE SI{" "}
-                    <a name="_Hlk529971515">LOCALIZER LOCADORA DE VEÍCULOS</a> E CLIENTE_NOME
+                    <a name="_Hlk529971515">LOCALIZER LOCADORA DE VEÍCULOS</a> E {cliente.nome}
                     <span style={{ textTransform: "uppercase", msoBidiFontWeight: "bold" }}>
                         <p />
                     </span>
