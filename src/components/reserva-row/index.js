@@ -10,10 +10,14 @@ function ReservaRow({ reserva }) {
 
         let db = getFirestore();
         let docRef = doc(db, "reserva", reserva.id);
+        let veicRef = doc(db, "veiculo", reserva.veiculoId);
         try {
             await updateDoc(docRef, {
                 funcionarioId: userID,
                 status: "APROVADA"
+            });
+            await updateDoc(veicRef, {
+                disponibilidade: "I",
             });
             Swal.fire({
                 position: 'center',
