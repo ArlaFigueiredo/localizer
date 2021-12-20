@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
+import Swal from 'sweetalert2'
 
 import './cadastro-cliente.css';
 
@@ -11,7 +12,9 @@ function CadastroCliente() {
     const [rg, setRg] = useState();
     const [cpf, setCpf] = useState();
     const [cnh, setCnh] = useState();
+    const [telefone, setTelefone] = useState();
     const [dataNascimento, setDataNascimento] = useState();
+    const [cep, setCep] = useState();
     const [logradouro, setLogradouro] = useState();
     const [complemento, setComplemento] = useState();
     const [numero, setNumero] = useState();
@@ -21,12 +24,9 @@ function CadastroCliente() {
 
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
 
     async function cadastrar() {
 
-        setMsgTipo(null);
         let db = getFirestore();
         try {
 
@@ -41,6 +41,8 @@ function CadastroCliente() {
                 rg: rg,
                 cpf: cpf,
                 cnh: cnh,
+                telefone: telefone,
+                cep: cep,
                 logradouro: logradouro,
                 complemento: complemento,
                 numero: numero,
@@ -50,10 +52,22 @@ function CadastroCliente() {
                 usuario: usuarioRef,
                 dataNascimento: dataNascimento
             })
-            setMsgTipo('sucesso');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: ' Cadastro Efetuado com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.location.reload();
         } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: e,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -78,7 +92,7 @@ function CadastroCliente() {
 
                                 <div className="col-3">
                                     <label className="text-dark">Data de nascimento:</label>
-                                    <input onChange={(e) => setDataNascimento(e.target.value) } type="date"  className="form-control"/>
+                                    <input onChange={(e) => setDataNascimento(e.target.value)} type="date" className="form-control" />
                                 </div>
 
                                 <div className="col-3">
@@ -92,31 +106,40 @@ function CadastroCliente() {
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <div className="col-4">
+                                <div className="col-3">
                                     <label className="text-dark">RG:</label>
                                     <input onChange={(e) => setRg(e.target.value)} type="text" className="form-control" />
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-3">
                                     <label className="text-dark">CPF:</label>
                                     <input onChange={(e) => setCpf(e.target.value)} type="text" className="form-control" />
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-3">
                                     <label className="text-dark">Carteira de Habilitação:</label>
                                     <input onChange={(e) => setCnh(e.target.value)} type="text" className="form-control" />
+                                </div>
+
+                                <div className="col-3">
+                                    <label className="text-dark">Telefone:</label>
+                                    <input onChange={(e) => setTelefone(e.target.value)} type="text" className="form-control" />
                                 </div>
                             </div>
 
 
                             <span className="badge">Endereço</span>
                             <div className="form-group row">
-                                <div className="col-6">
+                                <div className="col-2">
+                                    <label className="text-dark">CEP:</label>
+                                    <input onChange={(e) => setCep(e.target.value)} type="text" className="form-control" />
+                                </div>
+                                <div className="col-5">
                                     <label className="text-dark">Logradouro:</label>
                                     <input onChange={(e) => setLogradouro(e.target.value)} type="text" className="form-control" />
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-3">
                                     <label className="text-dark">Complemento:</label>
                                     <input onChange={(e) => setComplemento(e.target.value)} type="text" className="form-control" />
                                 </div>
@@ -158,11 +181,7 @@ function CadastroCliente() {
 
                             <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                         </form>
-
-                        <div className="msg-login text-dark text-center my-5">
-                            {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Cliente cadastrado com sucesso!</h3></span>}
-                            {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                        </div>
+                        
                     </div>
                 </div>
             </div>
