@@ -44,7 +44,7 @@ function Sidebar() {
                     <>
                     <span className="badge bg-danger mt-2 mb-2">Locações</span>
                     <li className="nav-item"><Link  className="nav-link" to="/gerencia-reserva" >Gerenciar Reservas</Link ></li>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Emissão de Contrato</Link ></li> 
+                    <li className="nav-item"><Link  className="nav-link" to="/emissao-contrato" >Emissão de Contrato</Link ></li> 
                     
                     <span className="badge bg-danger mt-2 mb-2">Devoluções</span>
                     <li className="nav-item"><Link  className="nav-link" to="/devolucao" >Cadastrar Devolução</Link ></li> 
