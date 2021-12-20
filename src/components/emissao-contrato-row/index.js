@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import firebase from '../../config/firebase';
 import { getFirestore, updateDoc, doc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import PDF from '../contrato-document';
