@@ -1,70 +1,96 @@
-import React, { useState } from 'react';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
+import { getFirestore, updateDoc, collection, doc, getDoc, query, where, getDocs } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
+import Swal from 'sweetalert2'
 
 function Devolucao() {
 
-    const [modelo, setModelo] = useState();
-    const [marca, setMarca] = useState();
-    const [placa, setPlaca] = useState();
-    const [cor, setCor] = useState();
-    const [categoria, setCategoria] = useState();
-    const [chassi, setChassi] = useState();
-    const [renavam, setRenavam] = useState();
-    const [qtdCadeiras, setQtdCadeiras] = useState();
-    const [qtdAssentosElevacao, setQtdAssentosElevacao] = useState();
-    const [gps, setGps] = useState();
+    const { id } = useParams();
+    const [reserva, setReserva] = useState({});
     const [quilometragem, setQuilometragem] = useState();
     const [nivelCombustivel, setNvlCombustivel] = useState();
-    const [valorDiaria, setValorDiaria] = useState();
     const [disponibilidade, setDisponibilidade] = useState();
+    const [inspecao, setInspecao] = useState({});
 
-    const [foto, setFoto] = useState();
-
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
-
-
-    async function cadastrar() {
-
-        setMsgTipo(null);
-        console.log(foto)
+    async function fetchReserva() {
         let db = getFirestore();
-        let storage = getStorage();
 
-        let storageRef = ref(storage, `imagens/${foto.name}`);
+        let docRef = doc(db, "reserva", id);
+        let reserv = await getDoc(docRef);
+        let lista = [];
+        lista.push({
+            id: reserv.id,
+            clienteId: reserv.data().clienteId,
+            dataFim: reserv.data().dataFim,
+            dataInicio: reserv.data().dataInicio,
+            seguroColisao: reserv.data().seguroColisao,
+            seguroFurto: reserv.data().seguroFurto,
+            seguroRoubo: reserv.data().seguroRoubo,
+            status: reserv.data().status,
+            valorTotal: reserv.data().valorTotal,
+            veiculoId: reserv.data().veiculoId,
+        });
+        setReserva(lista[0]);
+    }
 
+    useEffect(() => {
+        fetchReserva();
+    }, []);
+
+    async function fetchInspecoes() {
+        let db = getFirestore();
+        const inspecaoRef = collection(db, "inspecao");
+        const q = query(inspecaoRef, where("reservaId", "==", id));
+        const querySnapshot = await getDocs(q);
+        let lista = [];
+        querySnapshot.forEach((doc) => {
+            lista.push({
+                id: doc.id,
+                status: doc.data().status,
+                multa: doc.data().multa,
+            });
+        })
+        setInspecao(lista[0]);
+    }
+
+    useEffect(() => {
+        fetchInspecoes();
+    }, []);
+
+
+    async function atualizar() {
+        let db = getFirestore();
+        let docRef = doc(db, "reserva", reserva.id);
+        let veicRef = doc(db, "veiculo", reserva.veiculoId);
         try {
-
-            uploadBytes(storageRef, foto).then(function (snapshot) {
-                console.log('Uploaded foto!');
+            await updateDoc(docRef, {
+                status: "DEVOLVIDA",
+                multa: inspecao.multa,
             });
-
-            let veiculoRef = await addDoc(collection(db, "veiculo"), {
-                modelo: modelo,
-                marca: marca,
-                placa: placa,
-                cor: cor,
-                categoria: categoria,
-                chassi: chassi,
-                renavam: renavam,
-                qtdCadeiras: qtdCadeiras,
-                qtdAssentosElevacao: qtdAssentosElevacao,
-                gps: gps,
-                quilometragem: quilometragem,
-                valorDiaria: valorDiaria,
+            await updateDoc(veicRef, {
                 disponibilidade: disponibilidade,
+                quilometragem: quilometragem,
                 nivelCombustivel: nivelCombustivel,
-                foto: foto.name
             });
-            setMsgTipo('sucesso');
-        } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
-        }
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Devolução efetuada com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (erro) {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: erro,
+                showConfirmButton: false,
+                timer: 1500
+            })
 
+        }
     }
 
     return (
@@ -80,16 +106,42 @@ function Devolucao() {
                             </div>
 
                             <form>
+                                <span className="badge">Reserva ID</span>
+                                <div className="form-group row">
+                                    <div className="col-3">
+                                        <label className="text-dark">{reserva.id}</label>
+                                    </div>
+                                </div>
+                                <span className="badge">Inspeção</span>
+                                <div className="form-group row">
+                                    <div className="col-3">
+                                        <label className="text-dark">{inspecao.status}</label>
+                                    </div>
+                                </div>
+
+                                <span className="badge">Multa Inspeção</span>
+                                <div className="form-group row">
+                                    <div className="col-3">
+                                        <label className="text-dark">R$ {inspecao.multa}</label>
+                                    </div>
+                                </div>
                                 <span className="badge">Atualizações Veiculo</span>
                                 <div className="form-group row">
 
+
                                     <div className="col-3">
-                                        <label className="text-dark">Quilometragem:</label>
+                                        <label className="text-dark">
+                                            <i className="fas fa-tachometer-alt fa-1x mr-2"></i>
+                                            Quilometragem:
+                                        </label>
                                         <input onChange={(e) => setQuilometragem(e.target.value)} type="text" className="form-control" />
                                     </div>
 
                                     <div className="col-3">
-                                        <label className="text-dark">Nível de Combustível:</label>
+                                        <label className="text-dark">
+                                            <i className="fas fa-gas-pump fa-1x mr-2"></i>
+                                            Nível de Combustível:
+                                        </label>
                                         <input onChange={(e) => setNvlCombustivel(e.target.value)} type="text" className="form-control" />
                                     </div>
                                 </div>
@@ -106,20 +158,13 @@ function Devolucao() {
                                         Indisponivel
                                     </label>
                                 </div>
-
-                                <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
+                                <button onClick={() => { atualizar() }} className="btn btn-block btn-cadastro" type="button">Atualizar</button>
                             </form>
 
-                            <div className="msg-login text-dark text-center my-5">
-                                {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Veículo cadastrado com sucesso!</h3></span>}
-                                {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }
