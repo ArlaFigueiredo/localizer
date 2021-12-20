@@ -4,7 +4,7 @@ import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } 
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
-import ReservaRow from '../../components/reserva-row';
+// import ReservaRow from '../../components/reserva-row';
 import EmitirContratoRow from '../../components/emissao-contrato-row';
 
 function EmissaoContrato() {
@@ -52,7 +52,7 @@ function EmissaoContrato() {
                             <th scope="col">Data Inicio</th>
                             <th scope="col">Data Fim</th>
                             <th scope="col">Valor</th>
-                            <th scope="col">Emissão do</th>
+                            <th scope="col">Emissão do Contrato</th>
                         </tr>
                     </thead>
                     <tbody>

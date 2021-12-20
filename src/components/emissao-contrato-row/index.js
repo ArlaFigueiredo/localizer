@@ -6,34 +6,6 @@ function EmitirContratoRow({ reserva }) {
 
     const userID = useSelector(state => state.usuarioID)
 
-    async function aprovar() {
-
-        let db = getFirestore();
-        let docRef = doc(db, "reserva", reserva.id);
-        try {
-            await updateDoc(docRef, {
-                funcionarioId: userID,
-                status: "APROVADA"
-            });
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Reserva aprovada com sucesso!',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            window.location.reload(); 
-        } catch (erro) {
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: erro,
-                showConfirmButton: false,
-                timer: 1500
-            })
-
-        }
-
         async function emitirContrato() {
 
             let db = getFirestore();
