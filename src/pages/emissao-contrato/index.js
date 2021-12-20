@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import firebase from '../../config/firebase';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, where, query } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
-// import ReservaRow from '../../components/reserva-row';
 import EmitirContratoRow from '../../components/emissao-contrato-row';
 
 function EmissaoContrato() {
@@ -13,7 +11,10 @@ function EmissaoContrato() {
 
     async function fetchReservas() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "reserva"));
+        const reservaRef = collection(db, "reserva");
+        const q = query(reservaRef, where("status", "!=", "PENDENTE"));
+        const querySnapshot = await getDocs(q);
+
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({
