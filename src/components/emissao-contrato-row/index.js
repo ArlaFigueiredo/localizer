@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from '../../config/firebase';
-import { getFirestore, updateDoc, doc } from 'firebase/firestore';
+import { getFirestore, updateDoc, doc, getDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import PDF from '../contrato-document';
 import Modal from 'react-modal';
@@ -24,6 +24,7 @@ function EmitirContratoRow({ reserva }, props) {
 
     const userID = useSelector(state => state.usuarioID);
     const [postSubmitted, setPostSubmitted] = useState(false);
+    
 
 
     function afterOpenModal(e) {
