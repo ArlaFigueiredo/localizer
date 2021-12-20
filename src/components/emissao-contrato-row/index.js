@@ -1,10 +1,38 @@
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import {getFirestore,updateDoc, doc} from 'firebase/firestore';
+import {Link} from 'react-router-dom';
+import PDF from '../contrato-document';
+import Modal from 'react-modal';
+// import Pdf from "react-to-pdf";
 
-function EmitirContratoRow({ reserva }) {
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      width: '70%',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  };
 
-    const userID = useSelector(state => state.usuarioID)
+function EmitirContratoRow({ reserva }, props) {
+
+    const userID = useSelector(state => state.usuarioID);
+    const [postSubmitted, setPostSubmitted] = useState(false);
+    
+
+      function afterOpenModal(e) {
+        props.onAfterOpen(e, 'After Modal Opened');
+      }
+    
+      function onModalClose(event) {
+        let data = { name: 'example', type: 'closed from child' };
+        props.onCloseModal(event, data);
+      }
 
         async function emitirContrato() {
 
@@ -36,19 +64,19 @@ function EmitirContratoRow({ reserva }) {
         
     }
 
-    const Example = () =>{
+    function Example (){
         
+        
+
         Swal.fire({
             title: 'Confirma a impressão do contrato?',
-            showCancelButton: true,
             confirmButtonText: 'Imprimir',
-            cancelButtonText: 'Cancelar',
           }).then((reserva) => {
             /* Read more about isConfirmed, isDenied below */
             if (reserva) {
-              Swal.fire('Saved!', '', 'success')
+                setPostSubmitted(true);
             } else {
-              Swal.fire('Changes are not saved', '', 'info')
+                Swal.fire('Changes are not saved', '', 'info')
             }
           })
     
@@ -74,7 +102,29 @@ function EmitirContratoRow({ reserva }) {
             <td>
                 <button onClick={() => { Example() }} type="button" className="btn btn-success">Emitir Contrato</button>
             </td>
+            <td>
+            {postSubmitted ? 
+                <div>
+                    <Modal
+                    isOpen={postSubmitted}
+                    onAfterOpen={e => afterOpenModal(e)}
+                    onRequestClose={() => setPostSubmitted(false) }
+                    shouldCloseOnOverlayClick={true}
+                    style={customStyles}
+                    ariaHideApp={false}
+                    >
+                        
+                        <PDF title={reserva.id} />
+                        <button type="button" className="btn" onClick={() => setPostSubmitted(false)}>Fechar</button>
+                        
+                    </Modal>
+                </div> 
+            : 
+                <div></div>
+            }
+            </td>
         </tr>
+         
     )
 }
 
