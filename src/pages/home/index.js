@@ -1,6 +1,7 @@
 import React from 'react';
 import './home.css';
 import banner from '../../assets/banner.JPG'
+import logo from '../../assets/logo.JPG'
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import { useSelector } from 'react-redux';
@@ -17,7 +18,8 @@ function Home({ match }) {
                     <>
                         <Sidebar />
                         <div className="container">
-                            <h1 className='text-center fst-italic mt-3'>Bem Vindo!!</h1>
+                            <h1 className='text-center mt-5'>Bem Vindo!!</h1>
+                            <img src={logo} className="d-block w-100" />
                         </div>
                     </>
                     :
