@@ -10,13 +10,13 @@ const TodoComponent = {
     margin: "30px auto",
     minHeight: "200px",
     boxSizing: "border-box"
-}
-
-
+   }
 
 const PDF = (props) => {
-    
-    const fileContratoName = "Contrato da Reserva " + props.reservaId + ".pdf";
+
+    function handleGerarPdf() {
+
+    }
 
     const dataDeEmissaoDoContrato = new Date();
 
@@ -114,13 +114,6 @@ const PDF = (props) => {
                     </u>
                 </b>
             </p>
-<<<<<<< HEAD
-            <div style={TodoComponent}>
-                <p
-                    className="MsoNormal"
-                    style={{ marginBottom: "6.0pt", msoPagination: "none" }}
-                >
-=======
             <p
                 className="MsoNormal"
                 style={{ marginBottom: "6.0pt", msoPagination: "none" }}
@@ -171,158 +164,54 @@ const PDF = (props) => {
                         CONTRATO PARTICULAR DE LOCAÇÃO DE VEÍCULOS
                     </b>
                     , mediante as cláusulas e condições a seguir:
->>>>>>> 3036e7e0c4eda86585b963ea3a1990282d7e5d12
                     <b style={{ msoBidiFontWeight: "normal" }}>
                         <u>
-                            <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                QUALIFICAÇÃO DAS PARTES:
-                                <p />
-                            </span>
+                            <p />
                         </u>
                     </b>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{
-                        marginBottom: "6.0pt",
-                        textAlign: "justify",
-                        msoPagination: "none"
-                    }}
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        Pelo presente instrumento particular de um lado,{" "}
-                        <b>LOCALIZER LOCADORA DE VEÍCULOS</b>
-                        <span style={{ msoBidiFontWeight: "bold" }}>
-                            ,{" "}
+                </span>
+            </p>
+            <p
+                className="MsoNormal"
+                style={{
+                    marginBottom: "6.0pt",
+                    textAlign: "justify",
+                    msoPagination: "none"
+                }}
+            >
+                <b style={{ msoBidiFontWeight: "normal" }}>
+                    <u>
+                        <span style={{ fontFamily: '"Calibri",sans-serif' }}>
+                            CLÁUSULA PRIMEIRA DO OBJETO:
                         </span>
-                        inscrito no cadastro nacional de Pessoas JurÍdicas, CNPJ, do MinistÉrio da
-                        Fazenda sob <span style={{ msoBidiFontWeight: "bold" }}>número </span>
-                        33.512.827/0001-33, a partir de agora denominada simplesmente{" "}
-                        <b style={{ msoBidiFontWeight: "normal" }}>
-                            <u>CONTRATADA</u>
-                        </b>
-                        <span style={{ msoBidiFontWeight: "bold" }}>, de</span> outro lado a{" "}
-                        <b>{props.clienteID}</b>
-                        <span style={{ msoBidiFontWeight: "bold" }}>
-                            , CLIENTE_ENDEREÇO
-                        </span>
-                        , inscrita no cadastro nacional de Pessoas Físicas sob{" "}
-                        <span style={{ msoBidiFontWeight: "bold" }}>número </span>CLIENTE_CPF, a
-                        partir de agora denominada simplesmente{" "}
-                        <b>
-                            <u>CONTRATANTE</u>
-                        </b>
-                        <span style={{ msoBidiFontWeight: "bold" }}>, </span>têm entre si justo e
-                        contratado o presente{" "}
-                        <b style={{ msoBidiFontWeight: "normal" }}>
-                            CONTRATO PARTICULAR DE LOCAÇÃO DE VEÍCULOS
-                        </b>
-                        , mediante as cláusulas e condições a seguir:
-                        <b style={{ msoBidiFontWeight: "normal" }}>
-                            <u>
-                                <p />
-                            </u>
-                        </b>
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{
-                        marginBottom: "6.0pt",
-                        textAlign: "justify",
-                        msoPagination: "none"
-                    }}
-                >
+                    </u>
+                </b>
+                <span style={{ fontFamily: '"Calibri",sans-serif' }}>
                     <b style={{ msoBidiFontWeight: "normal" }}>
                         <u>
-                            <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                CLÁUSULA PRIMEIRA DO OBJETO:
-                            </span>
+                            <p />
                         </u>
                     </b>
-<<<<<<< HEAD
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        <b style={{ msoBidiFontWeight: "normal" }}>
-                            <u>
-                                <p />
-                            </u>
-                        </b>
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{
-                        marginBottom: "6.0pt",
-                        textAlign: "justify",
-                        msoPagination: "none"
-                    }}
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        O presente instrumento tem por objeto a locação do veículo {props.veiculo} pela {" "}
-                        <b style={{ msoBidiFontWeight: "normal" }}>CONTRATADA</b>
-                        acima qualificada, para seu uso privado.
-                        <span style={{ msoBidiFontWeight: "bold" }}>.</span>
-                        <b style={{ msoBidiFontWeight: "normal" }}>
-                            <u>
-                                <p />
-                            </u>
-                        </b>
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{ marginBottom: "6.0pt", textAlign: "right", msoPagination: "none" }}
-                    align="right"
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        Salvador, {dataDeEmissaoDoContrato.getDate()}/<span className="GramE">{dataDeEmissaoDoContrato.getMonth() + 1}</span>/{dataDeEmissaoDoContrato.getFullYear()}.
-                        <p />
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{ marginBottom: "6.0pt", textAlign: "right", msoPagination: "none" }}
-                    align="right"
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        <p>&nbsp;</p>
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{ marginBottom: "6.0pt", textAlign: "right", msoPagination: "none" }}
-                    align="right"
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        <p>&nbsp;</p>
-                    </span>
-                </p>
-                <p
-                    className="MsoNormal"
-                    style={{ marginBottom: "6.0pt", textAlign: "right", msoPagination: "none" }}
-                    align="right"
-                >
-                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        <p>&nbsp;</p>
-                    </span>
-                </p>
-                <table
-                    className="MsoNormalTable"
-                    style={{
-                        width: 800,
-                        marginLeft: "5.4pt",
-                        borderCollapse: "collapse",
-                        msoYftiTbllook: 1184,
-                        msoPaddingAlt: "0cm 5.4pt 0cm 5.4pt"
-                    }}
-                    width={800}
-                    cellSpacing={0}
-                    cellPadding={0}
-                    border={0}
-                >
-                    <tbody>
-                        <tr
-=======
+                </span>
+            </p>
+            <p
+                className="MsoNormal"
+                style={{
+                    marginBottom: "6.0pt",
+                    textAlign: "justify",
+                    msoPagination: "none"
+                }}
+            >
+                <span style={{ fontFamily: '"Calibri",sans-serif' }}>
+                    O presente instrumento tem por objeto a locação do veículo {props.veiculo} pela {" "}
+                    <b style={{ msoBidiFontWeight: "normal" }}>CONTRATADA</b>
+                    acima qualificada, para seu uso privado.
+                    <span style={{ msoBidiFontWeight: "bold" }}>.</span>
+                    <b style={{ msoBidiFontWeight: "normal" }}>
+                        <u>
+                            <p />
+                        </u>
+                    </b>
                 </span>
             </p>
             <p
@@ -400,7 +289,7 @@ const PDF = (props) => {
                                 align="center"
                             >
                                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                    _____________________________________
+                                    _____________
                                     <p />
                                 </span>
                             </p>
@@ -429,107 +318,53 @@ const PDF = (props) => {
 
                         </td>
                         <td
->>>>>>> 3036e7e0c4eda86585b963ea3a1990282d7e5d12
                             style={{
-                                msoYftiIrow: 0,
-                                msoYftiFirstrow: "yes",
-                                msoYftiLastrow: "yes",
+                                width: 800,
+                                padding: "0cm 5.4pt 0cm 5.4pt",
                                 height: "auto"
                             }}
+                            width={800}
+                            valign="top"
                         >
-                            <td
-                                style={{
-                                    width: 800,
-                                    padding: "0cm 5.4pt 0cm 5.4pt",
-                                    height: "auto"
-                                }}
-                                width={800}
-                                valign="top"
+                            <p
+                                className="MsoNormal"
+                                style={{ textAlign: "center", msoPagination: "none" }}
+                                align="center"
                             >
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
-                                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        _____________________________________
-                                        <p />
-                                    </span>
-                                </p>
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
-                                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        {props.clienteID}
-                                        <br />
-                                        CLIENTE_NOME
-                                        <p />
-                                    </span>
-                                </p>
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
-                                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        CONTRATADA
-                                        <p />
-                                    </span>
-                                </p>
-                                
-                            </td>
-                            <td
-                                style={{
-                                    width: 800,
-                                    padding: "0cm 5.4pt 0cm 5.4pt",
-                                    height: "auto"
-                                }}
-                                width={800}
-                                valign="top"
+                                <span style={{ fontFamily: '"Calibri",sans-serif' }}>
+                                    __________
+                                    <p />
+                                </span>
+                            </p>
+                            <p
+                                className="MsoNormal"
+                                style={{ textAlign: "center", msoPagination: "none" }}
+                                align="center"
                             >
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
+                                <b>
                                     <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        ______________________________
-                                        <p />
+                                        LOCALIZER LOCADORA DE VÉICULOS
                                     </span>
-                                </p>
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
-                                    <b>
-                                        <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                            LOCALIZER LOCADORA DE VÉICULOS
-                                        </span>
-                                    </b>
-                                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        <p />
-                                    </span>
-                                </p>
-                                <p
-                                    className="MsoNormal"
-                                    style={{ textAlign: "center", msoPagination: "none" }}
-                                    align="center"
-                                >
-                                    <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        CONTRATANTE
-                                        <p />
-                                    </span>
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <Pdf targetRef={ref} filename={fileContratoName}>
+                                </b>
+                                <span style={{ fontFamily: '"Calibri",sans-serif' }}>
+                                    <p />
+                                </span>
+                            </p>
+                            <p
+                                className="MsoNormal"
+                                style={{ textAlign: "center", msoPagination: "none" }}
+                                align="center"
+                            >
+                                <span style={{ fontFamily: '"Calibri",sans-serif' }}>
+                                    CONTRATANTE
+                                    <p />
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <Pdf targetRef={ref} filename="post.pdf">
                 {({ toPdf }) => <button className="btn btn-success" onClick={toPdf}>Gerar PDF</button>}
             </Pdf>
         </div>
