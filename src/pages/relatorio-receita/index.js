@@ -101,9 +101,6 @@ function RelatorioReceita() {
             ['Novembro', valoresDespesas.novembro],
             ['Dezembro', valoresDespesas.dezembro],
         ]
-
-        console.log(dataRelatorio)
-
         setData(dataRelatorio);
     }
 
