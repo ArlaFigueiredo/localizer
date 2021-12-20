@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, where, query } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
@@ -11,7 +11,10 @@ function GerenciaReserva() {
 
     async function fetchReservas() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "reserva"));
+
+        const reservaRef = collection(db, "reserva");
+        const q = query(reservaRef, where("status", "==", "PENDENTE"));
+        const querySnapshot = await getDocs(q);
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({
