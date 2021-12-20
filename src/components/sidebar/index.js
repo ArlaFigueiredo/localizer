@@ -1,11 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './sidebar.css';
 
 function Sidebar() {
-
-    const dispatch = useDispatch();
 
     return (
         
@@ -32,9 +30,6 @@ function Sidebar() {
                     </li>
                     <li className="nav-item">
                         <Link to='/minhas-reservas' className="nav-link">Minhas Reservas</Link>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link">Meus Débitos</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link">Comprovantes</a>

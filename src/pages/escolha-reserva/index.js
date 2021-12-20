@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, query, where } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
@@ -9,16 +9,14 @@ import './escolha-reserva.css';
 
 function EscolhaReserva() {
 
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
-
-
     const [veiculos, setVeiculos] = useState([]);
 
 
     async function fetchVeiculos() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "veiculo"));
+        const veiculoRef = collection(db, "veiculo");
+        const q = query(veiculoRef, where("disponibilidade", "==", "D"));
+        const querySnapshot = await getDocs(q);
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({

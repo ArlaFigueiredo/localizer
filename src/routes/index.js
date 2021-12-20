@@ -34,7 +34,7 @@ export default function MainRoutes() {
             <Route exact path='/escolha-reserva' element={<EscolhaReserva />} ></Route>
             <Route exact path='/minhas-reservas' element={<MinhasReservas />} ></Route>
             <Route exact path='/gerencia-reserva' element={<GereciaReserva />} ></Route>
-            <Route exact path='/devolucao' element={<Devolucao />} ></Route>
+            <Route exact path='/devolucao/:id' element={<Devolucao />} ></Route>
             <Route exact path='/inspecao' element={<InspecaoVeiculo />} ></Route>
             <Route exact path='/cadastro-despesa' element={<CadastroDespesa />} ></Route>
             <Route exact path='/relatorio-despesa' element={<RelatorioDespesa />} ></Route>

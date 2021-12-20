@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getFirestore, getDocs, collection, query, where } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
 
 function DevolucaoRow({ reserva }) {
 
@@ -47,7 +48,7 @@ function DevolucaoRow({ reserva }) {
                 <span className="badge bg-danger mb-3">{inspecao.multa}</span>
             </td>
             <td>
-                <button type="button" className="btn btn-primary">Devolver</button>
+                <Link to={'/devolucao/' + reserva.id} className="btn btn-primary">Devolver</Link >
             </td>
         </tr>
     )

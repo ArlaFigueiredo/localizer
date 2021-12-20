@@ -5,7 +5,7 @@ import { getFirestore, doc, addDoc, collection, getDoc } from 'firebase/firestor
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import CarroDesc from '../../components/carro-desc';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Swal from 'sweetalert2'
 
@@ -23,10 +23,6 @@ function CadastroReserva() {
     const [dataInicio, setDataInicio] = useState(null);
     const [dataFim, setDataFim] = useState(null);
     const [valorTotal, setTotal] = useState('');
-
-    const [msgTipo, setMsgTipo] = useState();
-    const [msg, setMsg] = useState();
-
 
     const [veiculo, setVeiculo] = useState([]);
 
@@ -94,7 +90,6 @@ function CadastroReserva() {
     }
 
     async function cadastrar() {
-        setMsgTipo(null);
         let db = getFirestore();
         try {
             let docRef = await addDoc(collection(db, "reserva"), {
@@ -110,10 +105,21 @@ function CadastroReserva() {
                 multa: null,
                 funcionarioId: null,
             })
-            setMsgTipo('sucesso');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: ' Reserva Efetuada com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         } catch (e) {
-            setMsgTipo('erro');
-            setMsg(e);
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: e,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -181,10 +187,6 @@ function CadastroReserva() {
                                 </div>
                                 <button onClick={() => { cadastrar() }} className="btn btn-block btn-cadastro" type="button">Cadastrar</button>
                             </form>
-                            <div className="msg-login text-dark text-center my-5">
-                                {msgTipo === 'sucesso' && <span><i className="fas fa-check text-success fa-3x"></i><h3>Reserva cadastrada com sucesso!</h3></span>}
-                                {msgTipo === 'erro' && <span><strong>Ops!</strong> {msg} &#128546; </span>}
-                            </div>
                         </div>
                     </div>
                 </div>
