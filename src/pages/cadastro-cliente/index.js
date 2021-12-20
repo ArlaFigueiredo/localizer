@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import firebase from '../../config/firebase';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 
 import './cadastro-cliente.css';

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import firebase from '../../config/firebase';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';

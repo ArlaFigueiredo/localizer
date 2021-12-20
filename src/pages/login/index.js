@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './login.css';
-import firebase from '../../config/firebase';
-import { getFirestore, query, where, updateDoc, deleteDoc, doc, addDoc, getDocs, collection, get } from 'firebase/firestore';
+import { getFirestore, query, where, getDocs, collection } from 'firebase/firestore';
 import {Link, Navigate} from 'react-router-dom';
 import Navbar from '../../components/navbar';
 import { useSelector, useDispatch} from 'react-redux';

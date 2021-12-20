@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection } from 'firebase/firestore';
-import { getStorage, ref, uploadString, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getFirestore, addDoc, collection } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes } from 'firebase/storage'
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 

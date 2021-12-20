@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom'
-import { getFirestore, updateDoc, deleteDoc, doc, addDoc, getDocs, collection, getDoc } from 'firebase/firestore';
+import { useParams } from 'react-router-dom'
+import { getFirestore, doc, addDoc, collection, getDoc } from 'firebase/firestore';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
