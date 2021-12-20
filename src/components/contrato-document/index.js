@@ -42,12 +42,12 @@ const PDF = (props) => {
             >
                 <a name="_Hlk529971712">
                     <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        CONTRATO PARTICULAR DE PRESTAÇÃO DE SERVIÇOS DE SUPORTE{" "}
+                        CONTRATO PARTICULAR DE LOCAÇÃO DE VÉICULOS{" "}
                     </span>
                 </a>
                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                    SISTEMAS E SERVIÇOS ONLINE, QUE FAZEM ENTRE SI{" "}
-                    <a name="_Hlk529971515">LOCALIZER LOCADORA DE VEÍCULOS</a> E {props.clienteID}
+                    , QUE FAZEM ENTRE SI{" "}
+                    <a name="_Hlk529971515">LOCALIZER LOCADORA DE VEÍCULOS</a> E CLIENTE_NOME
                     <span style={{ textTransform: "uppercase", msoBidiFontWeight: "bold" }}>
                         <p />
                     </span>
