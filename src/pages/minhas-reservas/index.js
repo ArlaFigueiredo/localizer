@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, getDocs, collection, query, where } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
 
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
@@ -8,12 +9,15 @@ import ReservaCard from '../../components/reserva-card';
 
 function MinhasReservas() {
 
-
     const [reservas, setReservas] = useState([]);
+    const userID = useSelector(state => state.usuarioID)
 
     async function fetchReservas() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "reserva"));
+
+        const reservaRef = collection(db, "reserva");
+        const q = query(reservaRef, where("clienteId", "==", userID));
+        const querySnapshot = await getDocs(q);
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({
