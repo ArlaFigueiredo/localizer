@@ -114,7 +114,13 @@ function EmitirContratoRow({ reserva }, props) {
                     ariaHideApp={false}
                     >
                         
-                        <PDF title={reserva.id} />
+                        <PDF 
+                            clienteID={reserva.clienteId} 
+                            veiculo={reserva.veiculoId} 
+                            valorReserva={reserva.valorTotal} 
+                            dataInicio={reserva.dataInicio} 
+                            dataFim={reserva.dataFim} 
+                        />
                         <button type="button" className="btn" onClick={() => setPostSubmitted(false)}>Fechar</button>
                         
                     </Modal>

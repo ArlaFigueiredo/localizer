@@ -8,6 +8,8 @@ const PDF = (props) => {
     function handleGerarPdf(){
         
     }
+
+    const dataDeEmissaoDoContrato = new Date();
     
     return (
         <div className="WordSection1">
@@ -40,13 +42,12 @@ const PDF = (props) => {
             >
                 <a name="_Hlk529971712">
                     <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                        CONTRATO PARTICULAR DE PRESTA��O DE SERVI�OS DE SUPORTE{" "}
+                        CONTRATO PARTICULAR DE PRESTAÇÃO DE SERVIÇOS DE SUPORTE{" "}
                     </span>
                 </a>
                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                    SISTEMAS E SERVI�OS ONLINE, QUE FAZEM ENTRE SI{" "}
-                    <a name="_Hlk529971515">JRS SERVI�OS � ADMINISTRADORAS</a> E POLLYANNA
-                    GUIMAR�ES GOMES.
+                    SISTEMAS E SERVIÇOS ONLINE, QUE FAZEM ENTRE SI{" "}
+                    <a name="_Hlk529971515">LOCALIZER LOCADORA DE VEÍCULOS</a> E {props.clienteID}
                     <span style={{ textTransform: "uppercase", msoBidiFontWeight: "bold" }}>
                         <p />
                     </span>
@@ -83,7 +84,7 @@ const PDF = (props) => {
                 <b style={{ msoBidiFontWeight: "normal" }}>
                     <u>
                         <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                            QUALIFICA��O DAS PARTES:
+                            QUALIFICAÇÃO DAS PARTES:
                             <p />
                         </span>
                     </u>
@@ -101,34 +102,31 @@ const PDF = (props) => {
                     Pelo presente instrumento particular de um lado,{" "}
                     <b>LOCALIZER LOCADORA DE VEÍCULOS</b>
                     <span style={{ msoBidiFontWeight: "bold" }}>
-                        , na pessoa do microempreendedor individual Josemar Rocha dos Santos
-                        J�nior,{" "}
+                        ,{" "}
                     </span>
-                    inscrito no cadastro nacional de Pessoas Jur�dicas, CNPJ, do Minist�rio da
-                    Fazenda sob <span style={{ msoBidiFontWeight: "bold" }}>n� </span>
+                    inscrito no cadastro nacional de Pessoas JurÍdicas, CNPJ, do MinistÉrio da
+                    Fazenda sob <span style={{ msoBidiFontWeight: "bold" }}>número </span>
                     33.512.827/0001-33, a partir de agora denominada simplesmente{" "}
                     <b style={{ msoBidiFontWeight: "normal" }}>
                         <u>CONTRATADA</u>
                     </b>
                     <span style={{ msoBidiFontWeight: "bold" }}>, de</span> outro lado a{" "}
-                    <b>{props.title}</b>
+                    <b>{props.clienteID}</b>
                     <span style={{ msoBidiFontWeight: "bold" }}>
-                        , pessoa f�sica, com sede na R. Frederico Sim�es, 85 - Caminho das
-                        �rvores, Salvador - BA, 41820-774 � Salvador / BA
+                        , CLIENTE_ENDEREÇO
                     </span>
-                    , inscrita no cadastro nacional de Pessoas F�sicas sob{" "}
-                    <span style={{ msoBidiFontWeight: "bold" }}>n� </span>027.735.354-80, a
+                    , inscrita no cadastro nacional de Pessoas Físicas sob{" "}
+                    <span style={{ msoBidiFontWeight: "bold" }}>número </span>CLIENTE_CPF, a
                     partir de agora denominada simplesmente{" "}
                     <b>
                         <u>CONTRATANTE</u>
                     </b>
-                    <span style={{ msoBidiFontWeight: "bold" }}>, </span>t�m entre si justo e
+                    <span style={{ msoBidiFontWeight: "bold" }}>, </span>têm entre si justo e
                     contratado o presente{" "}
                     <b style={{ msoBidiFontWeight: "normal" }}>
-                        CONTRATO PARTICULAR DE PRESTA��O DE SERVI�OS DE SUPORTE �
-                        ADMINISTRADORAS DE CONDOM�NIO
+                        CONTRATO PARTICULAR DE LOCAÇÃO DE VEÍCULOS
                     </b>
-                    , mediante as cl�usulas e condi��es a seguir:
+                    , mediante as cláusulas e condições a seguir:
                     <b style={{ msoBidiFontWeight: "normal" }}>
                         <u>
                             <p />
@@ -147,7 +145,7 @@ const PDF = (props) => {
                 <b style={{ msoBidiFontWeight: "normal" }}>
                     <u>
                         <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                            CL�USULA PRIMEIRA � DO OBJETO:
+                            CLÁUSULA PRIMEIRA DO OBJETO:
                         </span>
                     </u>
                 </b>
@@ -168,10 +166,9 @@ const PDF = (props) => {
                 }}
             >
                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                    O presente instrumento tem por objeto a contrata��o dos servi�os da{" "}
+                    O presente instrumento tem por objeto a locação do veículo {props.veiculo} pela {" "}
                     <b style={{ msoBidiFontWeight: "normal" }}>CONTRATADA</b>
-                    acima qualificada, para a execu��o de todas as tarefas de car�ter t�cnico
-                    descritas cl�usula segunda
+                    acima qualificada, para seu uso privado.
                     <span style={{ msoBidiFontWeight: "bold" }}>.</span>
                     <b style={{ msoBidiFontWeight: "normal" }}>
                         <u>
@@ -186,7 +183,7 @@ const PDF = (props) => {
                 align="right"
             >
                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                    Salvador, 20 de <span className="GramE">Maio</span> de 2020.
+                    Salvador, {dataDeEmissaoDoContrato.getDate()}/<span className="GramE">{dataDeEmissaoDoContrato.getMonth() + 1}</span>/{dataDeEmissaoDoContrato.getFullYear()}.
                     <p />
                 </span>
             </p>
@@ -265,9 +262,9 @@ const PDF = (props) => {
                                 align="center"
                             >
                                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                    JRS SERVI�OS � ADMINISTRADORAS
+                                    {props.clienteID}
                                     <br />
-                                    Josemar Rocha dos Santos J�nior
+                                    CLIENTE_NOME
                                     <p />
                                 </span>
                             </p>
@@ -309,7 +306,7 @@ const PDF = (props) => {
                             >
                                 <b>
                                     <span style={{ fontFamily: '"Calibri",sans-serif' }}>
-                                        POLLYANNA GUIMAR�ES GOMES
+                                        LOCALIZER LOCADORA DE VÉICULOS
                                     </span>
                                 </b>
                                 <span style={{ fontFamily: '"Calibri",sans-serif' }}>
