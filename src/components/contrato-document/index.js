@@ -3,6 +3,13 @@ import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 
+const TodoComponent = {
+    width: "800px",
+    margin: "30px auto",
+    minHeight: "200px",
+    boxSizing: "border-box"
+   }
+
 const PDF = (props) => {
     
     function handleGerarPdf(){
@@ -12,7 +19,9 @@ const PDF = (props) => {
     const dataDeEmissaoDoContrato = new Date();
     
     return (
-        <div className="WordSection1">
+        <div className="WordSection1" ref={ref}
+        style={TodoComponent}
+        >
             <p
                 className="MsoNormal"
                 style={{
@@ -217,13 +226,13 @@ const PDF = (props) => {
             <table
                 className="MsoNormalTable"
                 style={{
-                    width: "501.9pt",
+                    width: 800,
                     marginLeft: "5.4pt",
                     borderCollapse: "collapse",
                     msoYftiTbllook: 1184,
                     msoPaddingAlt: "0cm 5.4pt 0cm 5.4pt"
                 }}
-                width={669}
+                width={800}
                 cellSpacing={0}
                 cellPadding={0}
                 border={0}
@@ -239,11 +248,11 @@ const PDF = (props) => {
                     >
                         <td
                             style={{
-                                width: "253.9pt",
+                                width: 800,
                                 padding: "0cm 5.4pt 0cm 5.4pt",
                                 height: "auto"
                             }}
-                            width={339}
+                            width={800}
                             valign="top"
                         >
                             <p
@@ -282,11 +291,11 @@ const PDF = (props) => {
                         </td>
                         <td
                             style={{
-                                width: "248.0pt",
+                                width: 800,
                                 padding: "0cm 5.4pt 0cm 5.4pt",
                                 height: "auto"
                             }}
-                            width={331}
+                            width={800}
                             valign="top"
                         >
                             <p
