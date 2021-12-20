@@ -35,11 +35,12 @@ function CadastroDespesa() {
 
 
     async function cadastrar() {
+
         let db = getFirestore();
         let despesaRef = await addDoc(collection(db, "despesas"), {
             descricao: descricao,
             tipo: tipo,
-            fornecedorId: fornecedorId,
+            fornecedorId: fornecedorId.split("##")[0],
             valor: valor,
             dataVencimento: dataVencimento,
             status: "PENDENTE",
@@ -75,7 +76,7 @@ function CadastroDespesa() {
                                         <label className="text-dark">Fornecedor:</label>
                                         <select onChange={(e) => setFornecedor(e.target.value)} className="form-control">
                                             <option>-- Selecione o Fornecedor --</option>
-                                            {fornecedores.map(item => <option key={item.id}>{item.id}</option>)}
+                                            {fornecedores.map(item => <option key={item.id}>{item.id}##{item.nomeFantasia}</option>)}
                                         </select>
                                     </div>
 
