@@ -18,7 +18,6 @@ function Home({ match }) {
                     <>
                         <Sidebar />
                         <div className="container">
-                            <h1 className='text-center mt-5'>Bem Vindo!!</h1>
                             <img src={logo} className="d-block w-100" />
                         </div>
                     </>
