@@ -54,7 +54,7 @@ function Sidebar() {
                     <li className="nav-item"><Link  className="nav-link" to="/cadastro-despesa" >Lançamento Despesas</Link ></li>
                     
                     <span className="badge bg-danger mt-2 mb-2">Relatórios</span>
-                    <li className="nav-item"><Link  className="nav-link" to="/" >Relatório Receitas</Link ></li>
+                    <li className="nav-item"><Link  className="nav-link" to="/relatorio-receita" >Relatório Receitas</Link ></li>
                     <li className="nav-item"><Link  className="nav-link" to="/relatorio-despesa" >Relatório Despesas</Link ></li>
                     
                     <span className="badge bg-danger mt-2 mb-2">Cadastros</span>

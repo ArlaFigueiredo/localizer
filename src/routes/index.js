@@ -17,6 +17,8 @@ import Home from '../pages/home';
 import InspecaoVeiculo from '../pages/inspecao-veiculo';
 import RelatorioDespesa from '../pages/relatorio-despesas'
 import EmissaoContrato from '../pages/emissao-contrato'
+import RelatorioReceita from '../pages/relatorio-receita'
+import ListagemDevolucao from '../pages/listagem-devolucao';
 
 
 export default function MainRoutes() {
@@ -37,6 +39,8 @@ export default function MainRoutes() {
             <Route exact path='/cadastro-despesa' element={<CadastroDespesa />} ></Route>
             <Route exact path='/relatorio-despesa' element={<RelatorioDespesa />} ></Route>
             <Route exact path='/emissao-contrato' element={<EmissaoContrato />} ></Route>
+            <Route exact path='/relatorio-receita' element={<RelatorioReceita />} ></Route>
+            <Route exact path='/listagem-devolucao' element={<ListagemDevolucao />} ></Route>
         </Routes>
     )
 }
