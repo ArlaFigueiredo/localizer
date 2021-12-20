@@ -35,6 +35,25 @@ function EmitirContratoRow({ reserva }) {
             }
         
     }
+
+    const Example = () =>{
+        
+        Swal.fire({
+            title: 'Confirma a impressão do contrato?',
+            showCancelButton: true,
+            confirmButtonText: 'Imprimir',
+            cancelButtonText: 'Cancelar',
+          }).then((reserva) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (reserva) {
+              Swal.fire('Saved!', '', 'success')
+            } else {
+              Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
+    
+    }
+
     return (
         <tr>
             <th>{reserva.id}</th>
@@ -53,7 +72,7 @@ function EmitirContratoRow({ reserva }) {
                 <p className="text-bold">R$ {reserva.valorTotal}</p>
             </td>
             <td>
-                <button onClick={() => { emitirContrato() }} type="button" className="btn btn-success">Emitir Contrato</button>
+                <button onClick={() => { Example() }} type="button" className="btn btn-success">Emitir Contrato</button>
             </td>
         </tr>
     )
