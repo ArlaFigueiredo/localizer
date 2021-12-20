@@ -8,6 +8,12 @@ function Navbar(){
     const dispatch = useDispatch();
     const userEmail = useSelector(state => state.usuarioEmail);
 
+    async function logout(){
+        dispatch({type: 'LOG_OUT'});
+        let href = window.location.href
+        window.location.href = href.split("/")[0] + "/"
+    }
+
     return(
         <nav className="navbar navbar-expand-lg">
             <i className="far fa-compass text-white fa-2x"> Localizer</i>
@@ -22,7 +28,7 @@ function Navbar(){
                     {           
                         useSelector(state => state.usuarioLogado) > 0 ?                  
                     <>                        
-                        <li className="nav-item ms-6"><button  className="btn btn-outline-light ml-5" onClick={() => dispatch({type: 'LOG_OUT'})   }>Sair</button ></li> 
+                        <li className="nav-item ms-6"><button  className="btn btn-outline-light ml-5" onClick={() => logout() }>Sair</button ></li> 
                         <li><button  className="btn btn-outline-light ml-2" disabled>{userEmail}</button ></li>
                     </>
                     :
