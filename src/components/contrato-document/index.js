@@ -15,15 +15,8 @@ const TodoComponent = {
 
 
 const PDF = (props) => {
-<<<<<<< HEAD
     
     const fileContratoName = "Contrato da Reserva " + props.reservaId + ".pdf";
-=======
-
-    function handleGerarPdf() {
-
-    }
->>>>>>> 3036e7e0c4eda86585b963ea3a1990282d7e5d12
 
     const dataDeEmissaoDoContrato = new Date();
 
