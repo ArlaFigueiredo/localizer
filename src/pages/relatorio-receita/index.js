@@ -118,7 +118,7 @@ function RelatorioReceita() {
                     <div className="card-body">
                         <div className="col-12 mt-5 ml-2 mr-2">
                             <div className="col-6">
-                                <h1 className="mx-auto">Relatório de Despesa</h1>
+                                <h1 className="mx-auto">Relatório de Receitas</h1>
                                 <Chart
                                     width={'950px'}
                                     height={'300px'}
@@ -128,7 +128,7 @@ function RelatorioReceita() {
                                 />
                             </div>
                             <div className="col-12 mt-3">
-                                <button onClick={gerarRelatorio} className="btn btn-block btn-cadastro" type="button">Gerar Relatório de Despesas </button>
+                                <button onClick={gerarRelatorio} className="btn btn-block btn-cadastro" type="button">Gerar Relatório de Receitas </button>
                             </div>
                         </div>
                     </div>
