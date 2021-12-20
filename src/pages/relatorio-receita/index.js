@@ -61,29 +61,29 @@ function RelatorioReceita() {
             dezembro: 0
         }
         for (let i = 0; i < receitas.length; i++) {
-            if (receitas[i].dataInicio.split('-')[1] == 1)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 1)
                 valoresDespesas.janeiro += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 2)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 2)
                 valoresDespesas.fevereiro += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 3)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 3)
                 valoresDespesas.marco += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 4)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 4)
                 valoresDespesas.abril += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 5)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 5)
                 valoresDespesas.maio += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 6)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 6)
                 valoresDespesas.junho += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 7)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 7)
                 valoresDespesas.julho += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 8)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 8)
                 valoresDespesas.agosto += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 9)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 9)
                 valoresDespesas.setembro += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 10)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 10)
                 valoresDespesas.outubro += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 11)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 11)
                 valoresDespesas.novembro += parseInt(receitas[i].valorTotal);
-            if (receitas[i].dataInicio.split('-')[1] == 12)
+            if (parseInt(receitas[i].dataInicio.split('-')[1]) === 12)
                 valoresDespesas.dezembro += parseInt(receitas[i].valorTotal);
         }
         let dataRelatorio = [
