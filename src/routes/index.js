@@ -16,6 +16,7 @@ import CadastroDespesa from '../pages/cadastro-despesa'
 import Home from '../pages/home';
 import InspecaoVeiculo from '../pages/inspecao-veiculo';
 import RelatorioDespesa from '../pages/relatorio-despesas'
+import RelatorioReceita from '../pages/relatorio-receita'
 
 
 export default function MainRoutes() {
@@ -35,6 +36,7 @@ export default function MainRoutes() {
             <Route exact path='/inspecao' element={<InspecaoVeiculo />} ></Route>
             <Route exact path='/cadastro-despesa' element={<CadastroDespesa />} ></Route>
             <Route exact path='/relatorio-despesa' element={<RelatorioDespesa />} ></Route>
+            <Route exact path='/relatorio-receita' element={<RelatorioReceita />} ></Route>
         </Routes>
     )
 }
