@@ -1,4 +1,4 @@
-import { getFirestore, addDoc, getDocs, collection, doc, updateDoc } from 'firebase/firestore';
+import { getFirestore, addDoc, getDocs, collection, doc, updateDoc, query, where } from 'firebase/firestore';
 import Navbar from '../../components/navbar';
 import Sidebar from '../../components/sidebar';
 import React, { useEffect, useState } from 'react';
@@ -30,7 +30,10 @@ function InspecaoVeiculo() {
 
     async function fetchReservas() {
         let db = getFirestore();
-        let querySnapshot = await getDocs(collection(db, "reserva"));
+
+        const reservaRef = collection(db, "reserva");
+        const q = query(reservaRef, where("status", "==", "APROVADA"));
+        const querySnapshot = await getDocs(q);
         let lista = [];
         querySnapshot.forEach((doc) => {
             lista.push({
