@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import firebase from '../../config/firebase';
 import { getFirestore, updateDoc, doc } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
 import PDF from '../comprovante-document';
 import Modal from 'react-modal';
 // import Pdf from "react-to-pdf";
