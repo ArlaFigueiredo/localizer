@@ -48,7 +48,7 @@ function RelatorioDespesa() {
             servico: 0,
             folha: 0
         }
-        for (despesa of despesas) {
+        for (let despesa of despesas) {
             if (despesa.tipo === 'SERVIÇO')
                 valoresDespesas.servico += parseInt(despesa.valor);
             if (despesa.tipo === 'COMPRA DE VEICULO')
