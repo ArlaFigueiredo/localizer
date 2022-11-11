@@ -34,6 +34,7 @@ function RelatorioDespesa() {
                 status: doc.data().status,
             });
         });
+        console.log(setOptions)
         setDespesas(lista);
     }
 
