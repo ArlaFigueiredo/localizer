@@ -48,15 +48,15 @@ function RelatorioDespesa() {
             servico: 0,
             folha: 0
         }
-        for (let i = 0; i < despesas.length; i++) {
-            if (despesas[i].tipo === 'SERVIÇO')
-                valoresDespesas.servico += parseInt(despesas[i].valor);
-            if (despesas[i].tipo === 'COMPRA DE VEICULO')
-                valoresDespesas.veiculo += parseInt(despesas[i].valor);
-            if (despesas[i].tipo === 'FOLHA DE PAGAMENTO')
-                valoresDespesas.folha += parseInt(despesas[i].valor);
-            if (despesas[i].tipo === 'MANUTENÇAO')
-                valoresDespesas.manuntencao += parseInt(despesas[i].valor);
+        for (despesa of despesas) {
+            if (despesa.tipo === 'SERVIÇO')
+                valoresDespesas.servico += parseInt(despesa.valor);
+            if (despesa.tipo === 'COMPRA DE VEICULO')
+                valoresDespesas.veiculo += parseInt(despesa.valor);
+            if (despesa.tipo === 'FOLHA DE PAGAMENTO')
+                valoresDespesas.folha += parseInt(despesa.valor);
+            if (despesa.tipo === 'MANUTENÇAO')
+                valoresDespesas.manuntencao += parseInt(despesa.valor);
         }
         let dataRelatorio = [
             ['Tipo', 'Valor'],
