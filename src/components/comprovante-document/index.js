@@ -16,8 +16,6 @@ const PDF = (props) => {
 
     const fileContratoName = "Comprovante da reserva " + props.reservaId + ".pdf";
 
-    const dataDeEmissaoDoContrato = new Date();
-
     return (
         <div className="WordSection1" ref={ref}>
             <p
