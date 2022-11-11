@@ -60,7 +60,7 @@ function RelatorioReceita() {
             novembro: 0,
             dezembro: 0
         }
-        for (receita of receitas) {
+        for (let receita of receitas) {
             if (parseInt(receita.dataInicio.split('-')[1]) === 1)
                 valoresDespesas.janeiro += parseInt(receita.valorTotal);
             if (parseInt(receita.dataInicio.split('-')[1]) === 2)
