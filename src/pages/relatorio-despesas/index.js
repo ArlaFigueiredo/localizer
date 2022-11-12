@@ -34,7 +34,7 @@ function RelatorioDespesa() {
                 status: doc.data().status,
             });
         });
-        console.log(setOptions)
+        setOptions("Arla");
         setDespesas(lista);
     }
 
